@@ -13,8 +13,8 @@ struct Pictures{
     static var shared:Pictures = Pictures()
     
     
-    private var Images:[Image] = [];
-    
+    private var images:[Image] = [];
+    private var dicImages:[String:Image] = [:];
     
     
     
@@ -27,8 +27,18 @@ struct Pictures{
     func getImage(with:String)->Image?{
         return nil
     }
-    func addImage(_ img:Image){
-        
+    
+    
+    mutating func addImage(_ img:Image){
+        var isFound = false
+        if let _ = getImage(with:img.description){
+            isFound = true
+        }
+        if isFound{
+            img.name = "img_\(images.count)";
+        }
+        images.append(img);
+        dicImages[img.description]=img;
     }
     func deleteImage(at index:Int){
         
@@ -43,15 +53,23 @@ struct Pictures{
 }
 
 
-struct Image:Codable,Comparable{
+
+struct Image:Codable,Comparable,CustomStringConvertible{
+    
     static func < (lhs: Image, rhs: Image) -> Bool {
         return lhs.name < rhs.name;
     }
     
     
     var name:String = ""
+    
     var data:UIImage
     
+    
+    var description: String
+    {
+        return name;
+    }
     
     
     init(image:UIImage){
