@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E93EDA4D218B714600A1FE4D /* UserCameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* UserCameraData.swift */; };
 		E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA50218B723000A1FE4D /* Pictures.swift */; };
+		E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BD32202190F07800CE8319 /* ImageManipulation.swift */; };
+		E9BD32232190F77C00CE8319 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BD32222190F77C00CE8319 /* Image.swift */; };
 		E9FA88D3218A24B7007D5AD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FA88D2218A24B7007D5AD5 /* AppDelegate.swift */; };
 		E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FA88D4218A24B7007D5AD5 /* ViewController.swift */; };
 		E9FA88D8218A24B7007D5AD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FA88D6218A24B7007D5AD5 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		E93EDA4C218B714600A1FE4D /* UserCameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCameraData.swift; sourceTree = "<group>"; };
 		E93EDA50218B723000A1FE4D /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
+		E9BD32202190F07800CE8319 /* ImageManipulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManipulation.swift; sourceTree = "<group>"; };
+		E9BD32222190F77C00CE8319 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		E9FA88CF218A24B7007D5AD5 /* Camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FA88D2218A24B7007D5AD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9FA88D4218A24B7007D5AD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +48,8 @@
 			children = (
 				E93EDA4C218B714600A1FE4D /* UserCameraData.swift */,
 				E93EDA50218B723000A1FE4D /* Pictures.swift */,
+				E9BD32202190F07800CE8319 /* ImageManipulation.swift */,
+				E9BD32222190F77C00CE8319 /* Image.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */,
+				E9BD32232190F77C00CE8319 /* Image.swift in Sources */,
+				E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */,
 				E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */,
 				E9FA88D3218A24B7007D5AD5 /* AppDelegate.swift in Sources */,
 				E93EDA4D218B714600A1FE4D /* UserCameraData.swift in Sources */,
@@ -301,6 +309,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AEWFH68RD8;
 				INFOPLIST_FILE = Camera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,6 +328,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AEWFH68RD8;
 				INFOPLIST_FILE = Camera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
