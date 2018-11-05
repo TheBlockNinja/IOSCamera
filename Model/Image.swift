@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class Image:NSObject,NSCoding,Comparable{
-    static  let imageSaveName = "IMGSAVE"
+    static let imageSaveName = "IMGSAVE"
+    static let imageOriginalSaveName = "IMGOriginalSAVE"
     static let nameSaveName = "NAMESAVE"
     static let InfoSaveName = "InfoSave"
     static func < (lhs: Image, rhs: Image) -> Bool {
@@ -22,6 +23,8 @@ class Image:NSObject,NSCoding,Comparable{
     
     var data:UIImage
     
+    let orgininalImage:UIImage
+    
     private var info:String = "" // desciption of the photo
     
     
@@ -32,30 +35,52 @@ class Image:NSObject,NSCoding,Comparable{
     
     
     init(image:UIImage){
+        orgininalImage = image
         data = image
     }
     init(name:String,image:UIImage){
+        orgininalImage = image
         self.name = name;
         data = image
     }
+    init(name:String,image:UIImage,original:UIImage){
+        orgininalImage = original
+        self.name = name;
+        data = image
+        
+    }
+    
     func setInfo(_ info:String){
         self.info = info
     }
     func getInfo()->String{
         return info;
     }
+    
+    func conatains(_ str:String)->Bool{
+        if info.lowercased().contains(str.lowercased()) || name.lowercased().contains(str.lowercased()){
+            return true
+        }
+        return true
+    }
+    
+    func revertImage(){
+      data = orgininalImage
+    }
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(data, forKey: Image.imageSaveName)
         aCoder.encode(name, forKey: Image.nameSaveName);
         aCoder.encode(info, forKey: Image.InfoSaveName);
+        aCoder.encode(orgininalImage, forKey: Image.imageOriginalSaveName);
     }
-    
     required convenience init?(coder aDecoder: NSCoder) {
         let img = aDecoder.decodeObject(forKey: Image.imageSaveName)
+        let original = aDecoder.decodeObject(forKey: Image.imageOriginalSaveName)
         let nam = aDecoder.decodeObject(forKey: Image.nameSaveName)
         let inf = aDecoder.decodeObject(forKey: Image.InfoSaveName)
-        if let img = img as? UIImage,let name = nam as? String{
-            self.init(name: name, image: img)
+        if let img = img as? UIImage,let org = original as? UIImage,let name = nam as? String{
+            self.init(name: name, image: img,original:org);
         }else{
             fatalError("UNABLE TO LOAD IMAGES");
         }
@@ -65,12 +90,7 @@ class Image:NSObject,NSCoding,Comparable{
         
     }
     
-    func conatains(_ str:String)->Bool{
-        if info.lowercased().contains(str.lowercased()) || name.lowercased().contains(str.lowercased()){
-            return true
-        }
-        return true
-    }
+
     
     
     

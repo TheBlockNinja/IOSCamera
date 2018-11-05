@@ -20,12 +20,15 @@ struct Pictures{
     private var dataFilePath = ""
     private var images:[Image] = [];
     private var dicImages:[String:Image] = [:];
+    private var selectedImages:[Int] = []
+    
     var count:Int{
         return images.count;
     }
     init(){
         loadPictures()
     }
+
     func getImage(at index:Int)->Image?
     {
         if index > 0 && index < images.count{
@@ -46,6 +49,9 @@ struct Pictures{
             }
         }
         return imgs;
+    }
+    func getAllImages()->[Image]{
+        return images;
     }
     
     mutating func addImage(_ img:Image){
@@ -82,7 +88,31 @@ struct Pictures{
   
         
     }
+    
+    //selects and deselects Images
+    mutating func selectImagesBetween(index1:Int,index2:Int){
+        for i in index1..<index2{
+            selectedImages.append(i);
+        }
+    }
+    mutating func selectImage(at index:Int){
+        selectedImages.append(index);
+    }
+    
+    mutating func deSelectImage(at index:Int){
+        if let i = selectedImages.firstIndex(of: index){
+            selectedImages.remove(at: i);
+        }
+    }
+    mutating func deSelectAllImages(){
+        selectedImages.removeAll();
+    }
 
+    
+    func savePictures(){
+        NSKeyedArchiver.archiveRootObject(images, toFile: dataFilePath);
+    }
+    
     private mutating func loadPictures(){
         let filemgr = FileManager.default
         let dirPaths =
@@ -101,16 +131,8 @@ struct Pictures{
         }
     }
     
-    func savePictures(){
-        NSKeyedArchiver.archiveRootObject(images, toFile: dataFilePath);
-    }
-    
     private mutating func sort(){
         images.sort();
-    }
-    
-    func getAllImages()->[Image]{
-        return images;
     }
 }
 
