@@ -32,10 +32,10 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         cell.backgroundColor = UIColor.cyan
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 150));
         
-        cell.addSubview(imageView)
+        cell.contentView.addSubview(imageView)
         
-        let image = Pictures.shared.getImage(at: indexPath.item)!.orgininalImage
-        imageView.image = image
+       // let image = Pictures.shared.getImage(at: indexPath.item)!.orgininalImage
+        imageView.image = Pictures.shared.getImage(at: indexPath.item)!.data
         
         
         imageView.contentMode = UIView.ContentMode.scaleAspectFit

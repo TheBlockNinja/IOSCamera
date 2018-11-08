@@ -26,12 +26,13 @@ struct Pictures{
         return images.count;
     }
     init(){
+
         loadPictures()
     }
 
     func getImage(at index:Int)->Image?
     {
-        if index > 0 && index < images.count{
+        if index >= 0 && index < images.count{
             return images[index];
         }
         return nil
@@ -109,30 +110,40 @@ struct Pictures{
     }
 
     
-    func savePictures(){
-        NSKeyedArchiver.archiveRootObject(images, toFile: dataFilePath);
+    mutating func savePictures(){
+        let success = NSKeyedArchiver.archiveRootObject(images, toFile: filePath(fileName: Pictures.archiveName));
+        
+        print(success ? "Successful save" : "Save Failed")
+       // loadPictures()
     }
     
     private mutating func loadPictures(){
+        
         let filemgr = FileManager.default
-        let dirPaths =
-            NSSearchPathForDirectoriesInDomains(.documentDirectory,
-                                                .userDomainMask, true)
-        let docsDir = dirPaths[0]
-        dataFilePath = docsDir + Pictures.archiveName
-        sort()
-        if filemgr.fileExists(atPath: dataFilePath){
-            if let images = NSKeyedUnarchiver.unarchiveObject(withFile:dataFilePath) as? [Image]{
+        //sort()
+        if filemgr.fileExists(atPath: filePath(fileName: Pictures.archiveName)){
+            if let images = NSKeyedUnarchiver.unarchiveObject(withFile:filePath(fileName: Pictures.archiveName)) as? [Image]{
                 for i in images{
                     addImage(i);
                 }
                 
             }
+        }else{
+            print("No images");
         }
     }
-    
+    func listallPictures(){
+        for i in images{
+            print(i)
+        }
+    }
     private mutating func sort(){
         images.sort();
+    }
+    func filePath(fileName:String) -> String {
+        let fileManager = FileManager.default
+        let directory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return (directory!.appendingPathComponent(fileName).path)
     }
 }
 

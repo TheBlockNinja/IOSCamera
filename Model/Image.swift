@@ -11,9 +11,11 @@ import UIKit
 
 class Image:NSObject,NSCoding,Comparable{
     static let imageSaveName = "IMGSAVE"
-    static let imageOriginalSaveName = "IMGOriginalSAVE"
+  //  static let imageOriginalSaveName = "IMGOriginalSAVE"
     static let nameSaveName = "NAMESAVE"
     static let InfoSaveName = "InfoSave"
+    
+    
     static func < (lhs: Image, rhs: Image) -> Bool {
         return lhs.name < rhs.name;
     }
@@ -23,7 +25,7 @@ class Image:NSObject,NSCoding,Comparable{
     
     var data:UIImage
     
-    let orgininalImage:UIImage
+   // let orgininalImage:UIImage
     
     private var info:String = "" // desciption of the photo
     
@@ -35,20 +37,23 @@ class Image:NSObject,NSCoding,Comparable{
     
     
     init(image:UIImage){
-        orgininalImage = image
+     
+       // orgininalImage = image
         data = image
+      
+        
     }
     init(name:String,image:UIImage){
-        orgininalImage = image
+      //  orgininalImage = image
         self.name = name;
         data = image
     }
-    init(name:String,image:UIImage,original:UIImage){
+  /*  init(name:String,image:UIImage,original:UIImage){
         orgininalImage = original
         self.name = name;
         data = image
         
-    }
+    }*/
     
     func setInfo(_ info:String){
         self.info = info
@@ -65,24 +70,29 @@ class Image:NSObject,NSCoding,Comparable{
     }
     
     func revertImage(){
-      data = orgininalImage
+    //  data = orgininalImage
     }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(data, forKey: Image.imageSaveName)
-        aCoder.encode(name, forKey: Image.nameSaveName);
+        aCoder.encode(name, forKey: "NAME");
         aCoder.encode(info, forKey: Image.InfoSaveName);
-        aCoder.encode(orgininalImage, forKey: Image.imageOriginalSaveName);
+      //  aCoder.encode(orgininalImage, forKey: Image.imageOriginalSaveName);
+        
     }
     required convenience init?(coder aDecoder: NSCoder) {
-        let img = aDecoder.decodeObject(forKey: Image.imageSaveName)
-        let original = aDecoder.decodeObject(forKey: Image.imageOriginalSaveName)
+       //let i = UIImage.init
+        
+        let img = aDecoder.decodeObject(forKey: Image.imageSaveName) as? UIImage
+      //  let original = aDecoder.decodeObject(forKey: Image.imageOriginalSaveName) as? UIImage
         let nam = aDecoder.decodeObject(forKey: Image.nameSaveName)
         let inf = aDecoder.decodeObject(forKey: Image.InfoSaveName)
-        if let img = img as? UIImage,let org = original as? UIImage,let name = nam as? String{
-            self.init(name: name, image: img,original:org);
+        
+        if let img = img,let name = nam as? String{
+            self.init(name: name, image: img);
         }else{
-            fatalError("UNABLE TO LOAD IMAGES");
+            //fatalError("UNABLE TO LOAD IMAGES");
+            self.init(image: img ?? UIImage())
         }
         if let inf = inf as? String{
             self.setInfo(inf)

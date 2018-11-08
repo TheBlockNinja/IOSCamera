@@ -22,6 +22,16 @@ struct ImageManipulation{
         
         
     }
+    
+    
+    func differences(_ image1:UIImage,_ image2:UIImage){
+        
+        
+        
+        
+        
+    }
+
 
     
     
@@ -43,7 +53,7 @@ struct drawOnImage{
     mutating func drawLine(p1:CGPoint,p2:CGPoint){
         lastPoint = p2
         UIGraphicsBeginImageContext(img.data.size)
-        img.data.draw(in: CGRect(origin: .zero, size: img.data.size))
+        img.data.draw(in:  CGRect(x: 0, y: 0, width: img.data.size.width, height: img.data.size.height))
         let context = UIGraphicsGetCurrentContext()!
         
         context.setLineWidth(CGFloat(lineWidth))
