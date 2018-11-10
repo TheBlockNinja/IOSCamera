@@ -26,8 +26,9 @@ struct Pictures{
         return images.count;
     }
     init(){
-
+        
         loadPictures()
+        savePictures()
     }
 
     func getImage(at index:Int)->Image?

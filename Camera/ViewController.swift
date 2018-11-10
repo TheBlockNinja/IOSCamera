@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-class ViewController: UIViewController,AVCapturePhotoCaptureDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var previewCameraFeed: UIView!
 
@@ -19,14 +19,23 @@ class ViewController: UIViewController,AVCapturePhotoCaptureDelegate {
     var previewVideoLayer: AVCaptureVideoPreviewLayer!
     
     var currentCaptureDevice: AVCaptureDevice!
+    var photoDelegate:PhotoOutputDelegate = PhotoOutputDelegate()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // sets up camera Settings
+        NotificationCenter.default.addObserver(self, selector: #selector(showPreview), name: PhotoOutputDelegate.PreviewNotification, object: nil)
+        currentCameraSession = AVCaptureSession()
+        currentCameraSession.sessionPreset = .hd1920x1080
+        previewImage.contentMode = .scaleAspectFit
+        
+        selectCamera()
+    }
     
     @IBAction func didTapScreen(_ sender: Any) {
-      //  let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-       // currentCaptureDevice.focusMode = .autoFocus
-       // currentCaptureDevic
-       // let set = AVCapturePhotoSettings(rawPixelFormatType: OSType.min)
-       // outputCaptureImage.capturePhoto(with: set, delegate: self)
+        print("TAKE")
         
+        outputCaptureImage.capturePhoto(with:getPhotoSettings(), delegate: photoDelegate)
     }
     
     func getCaptureDevice(){
@@ -34,23 +43,23 @@ class ViewController: UIViewController,AVCapturePhotoCaptureDelegate {
         
         
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // sets up camera Settings
-        
-        currentCameraSession = AVCaptureSession()
-        currentCameraSession.sessionPreset = .hd1920x1080
-        selectCamera()
-        
-        
-
+    func getPhotoSettings()->AVCapturePhotoSettings{
+        let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+        if settings.availablePreviewPhotoPixelFormatTypes.count > 0{
+            settings.previewPhotoFormat = [
+                kCVPixelBufferPixelFormatTypeKey : settings.availablePreviewPhotoPixelFormatTypes.first!,
+                kCVPixelBufferWidthKey : 1024,
+                kCVPixelBufferHeightKey : 1024,
+                ] as [String: Any]
+            print("can preview");
+        }
+        return settings
     }
+
     func selectCamera(){
         //https://stackoverflow.com/questions/38122040/set-grayscale-on-output-of-avcapturedevice-in-ios
       
-        currentCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-
-        
+        currentCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)        
         do {
             let input = try AVCaptureDeviceInput(device: currentCaptureDevice)
             setupSession(with: input)
@@ -84,27 +93,23 @@ class ViewController: UIViewController,AVCapturePhotoCaptureDelegate {
 
     
     @IBAction func didTakePhoto(_ sender: Any) {
-        currentCameraSession.startRunning()
+       
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-        outputCaptureImage.capturePhoto(with: settings, delegate: self)
+        outputCaptureImage.capturePhoto(with: settings, delegate: photoDelegate)
         
     }
     
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation()
-            else { return }
-        
-        let image = UIImage(data: imageData)
-        previewImage.contentMode = UIView.ContentMode.scaleAspectFit
-        let newImg = Image(image: image!);
-        Pictures.shared.addImage(newImg);
-        Pictures.shared.savePictures();
-       
-        previewImage.image = image
-        
-        Pictures.shared.listallPictures()
-        currentCameraSession.startRunning()
+    @objc func showPreview(){
+        previewImage.image = photoDelegate.CurrentPreviewImage
+
+        UIView.animate(withDuration: 1.0, animations: {
+            self.previewImage.frame = CGRect(x: 0, y: self.previewCameraFeed.frame.height, width: self.previewImage.frame.width, height: self.previewImage.frame.height)
+        }) { (true) in
+            self.previewImage.image = nil;
+            self.previewImage.frame = self.view.frame
+        }
     }
+
     
 }
 
