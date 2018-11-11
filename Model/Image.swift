@@ -11,7 +11,6 @@ import UIKit
 
 class Image:NSObject,NSCoding,Comparable{
     static let imageSaveName = "IMGSAVE"
-  //  static let imageOriginalSaveName = "IMGOriginalSAVE"
     static let nameSaveName = "NAMESAVE"
     static let InfoSaveName = "InfoSave"
     
@@ -25,8 +24,6 @@ class Image:NSObject,NSCoding,Comparable{
     
     var data:UIImage
     
-   // let orgininalImage:UIImage
-    
     private var info:String = "" // desciption of the photo
     
     
@@ -37,23 +34,15 @@ class Image:NSObject,NSCoding,Comparable{
     
     
     init(image:UIImage){
-     
-       // orgininalImage = image
         data = image
       
         
     }
     init(name:String,image:UIImage){
-      //  orgininalImage = image
         self.name = name;
         data = image
     }
-  /*  init(name:String,image:UIImage,original:UIImage){
-        orgininalImage = original
-        self.name = name;
-        data = image
-        
-    }*/
+
     
     func setInfo(_ info:String){
         self.info = info
@@ -69,9 +58,6 @@ class Image:NSObject,NSCoding,Comparable{
         return true
     }
     
-    func revertImage(){
-    //  data = orgininalImage
-    }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(data, forKey: Image.imageSaveName)

@@ -20,7 +20,10 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
    
     var centerCellLocation:CGRect?
     
+    let DeleteButtionRect = CGRect(x: 2, y: 2, width: 50, height: 20)
+    
     let cellScale = CGAffineTransform(scaleX: 2, y: 2)
+    
     
     let deleteButton = UIButton()
     
@@ -40,7 +43,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     }
     func setupDeleteButton(){
         deleteButton.setTitle("DEL", for: .normal)
-        deleteButton.frame = CGRect(x: 2, y: 2, width: 50, height: 24)
+        deleteButton.frame = DeleteButtionRect
         deleteButton.layer.cornerRadius = 5
         deleteButton.backgroundColor = .cyan
         deleteButton.alpha = 0.7
@@ -55,7 +58,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     private func addImageView(_ img:UIImage){
         let v = UIImageView(image: img);
-        v.contentMode = UIView.ContentMode.scaleToFill
+        v.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.append(v);
     }
     @objc func deleteImage(){
@@ -86,7 +89,14 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView.cellForItem(at: indexPath)?.transform.isIdentity)!{
-            animateCellTransform(cell: (collectionView.cellForItem(at: indexPath)), cellScale)
+            let isTop = indexPath.item < 2
+            var isBottom = false
+            if 0 == imageView.count % 2{
+                isBottom = indexPath.item >= imageView.count-2
+            }else{
+                isBottom = indexPath.item >= imageView.count-1
+            }
+            animateCellTransform(cell: (collectionView.cellForItem(at: indexPath)), isTop: isTop, isBottom:isBottom, cellScale)
             selectedCell = indexPath.item
             
         }else{
@@ -96,14 +106,22 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         }
         
     }
+
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         animateCellTransform(cell: (collectionView.cellForItem(at: indexPath)))
         selectedCell = -1
     }
 
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if let items = Collection.indexPathsForSelectedItems{
+            for i in items{
+                Collection.deselectItem(at: i, animated: true)
+            }
+        }
+    }
+
     
-    
-    private func animateCellTransform(cell:UICollectionViewCell?,_ transf:CGAffineTransform=CGAffineTransform.identity){
+    private func animateCellTransform(cell:UICollectionViewCell?,isTop:Bool=false,isBottom:Bool=false,_ transf:CGAffineTransform=CGAffineTransform.identity){
         if let cell = cell{ //Checks if Cell exits
             
             //brings current cell to front of other UIViews(UICollectionView Cell)
@@ -116,11 +134,17 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
                 yDistance = 0
             }else{
                 xDistance =  (centerCellLocation?.midX)! - cell.frame.midX
+                if isTop{
+                    yDistance = (centerCellLocation?.midY)! - cell.frame.midY
+                }
+                if isBottom{
+                    yDistance = (cell.frame.midY-(cell.frame.height/2)) - cell.frame.midY
+                }
             }
             //combines 2 transform methods ie. scale and distance
             //identity is the orginal position
             let combineTransfrom = transf.concatenating(CGAffineTransform(translationX: xDistance, y: yDistance))
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.15, animations: {
                 cell.transform = combineTransfrom
             }){ (true) in
                 if cell.transform.isIdentity{
