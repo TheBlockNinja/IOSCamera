@@ -42,7 +42,11 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate{
     static func saveImage(photo:AVCapturePhoto){
         let imageData = photo.fileDataRepresentation()
         if let imageData = imageData{
-            let newImg = Image(image: UIImage(data: imageData)!);
+           let image =  UIImage(data: imageData)!
+        
+            let compressed = image.jpegData(compressionQuality: 0.5)
+            let newImg = Image(image: UIImage(data: compressed!)!);
+            
             Pictures.shared.addImage(newImg);
             Pictures.shared.savePictures();
            

@@ -36,7 +36,6 @@ class Image:NSObject,NSCoding,Comparable{
     
     
     init(image:UIImage){
-        
         data = image
        super.init()
         setImageView()
