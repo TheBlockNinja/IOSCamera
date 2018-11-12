@@ -45,7 +45,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate{
             let newImg = Image(image: UIImage(data: imageData)!);
             Pictures.shared.addImage(newImg);
             Pictures.shared.savePictures();
-            NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
+           
         }
     }
 }

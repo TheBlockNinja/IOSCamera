@@ -24,6 +24,8 @@ class Image:NSObject,NSCoding,Comparable{
     
     var data:UIImage
     
+    var imageView:UIImageView!
+    
     private var info:String = "" // desciption of the photo
     
     
@@ -34,13 +36,25 @@ class Image:NSObject,NSCoding,Comparable{
     
     
     init(image:UIImage){
-        data = image
-      
         
+        data = image
+       super.init()
+        setImageView()
     }
     init(name:String,image:UIImage){
+        
         self.name = name;
         data = image
+        super.init()
+        setImageView()
+    }
+    private func setImageView(){
+        DispatchQueue.main.async {
+            self.imageView = UIImageView(image: self.data)
+            self.imageView.contentMode = .scaleAspectFill
+        }
+        
+        
     }
 
     

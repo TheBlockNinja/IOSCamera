@@ -16,14 +16,9 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     @IBOutlet weak var PreviewImage: UIImageView!
     
-    var imageView:[UIImageView] = []
-   
-    var centerCellLocation:CGRect?
-    
     let DeleteButtionRect = CGRect(x: 2, y: 2, width: 50, height: 20)
     
     let cellScale = CGAffineTransform(scaleX: 2, y: 2)
-    
     
     let deleteButton = UIButton()
     
@@ -31,15 +26,18 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        centerCellLocation = self.view.frame
-        updateImages()
+        DispatchQueue.global().async {
+            Pictures.shared.loadPictures()
+        }
         setupDeleteButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(didaddmoreImages), name: PhotoOutputDelegate.SavedImageNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didaddmoreImages), name: Pictures.UpdateLoadingNotification, object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         // imageView.removeAll()
         selectedCell = -1
-        updateImages()
-        Collection.reloadData()
+      
+       // Collection.reloadData()
     }
     func setupDeleteButton(){
         deleteButton.setTitle("DEL", for: .normal)
@@ -50,24 +48,21 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         deleteButton.addTarget(self, action: #selector(deleteImage), for: .touchUpInside )
     }
 
-    @objc func updateImages(){
-        for i in imageView.count..<Pictures.shared.count{
-            addImageView((Pictures.shared.getImage(at: i)?.data)!)
+    @objc func didaddmoreImages(){
+        DispatchQueue.main.async {
+           // self.updateImages()
+            self.Collection.reloadData()
         }
     }
-    
-    private func addImageView(_ img:UIImage){
-        let v = UIImageView(image: img);
-        v.contentMode = UIView.ContentMode.scaleAspectFill
-        imageView.append(v);
-    }
     @objc func deleteImage(){
-        print("DELETE")
         if selectedCell > -1{
             Pictures.shared.deleteImage(at: selectedCell)
-            imageView[selectedCell].removeFromSuperview()
-            imageView.remove(at: selectedCell);
             Collection.reloadData();
+            if let items = Collection.indexPathsForSelectedItems{
+                for i in items{
+                    Collection.deselectItem(at: i, animated: true)
+                }
+            }
             selectedCell = -1
         }
         
@@ -80,8 +75,12 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
-        imageView[indexPath.item].frame.size = cell.frame.size
-        cell.addSubview(imageView[indexPath.item])
+        if Pictures.shared.count > indexPath.item{
+            if let picture = Pictures.shared.getImage(at: indexPath.item){
+                picture.imageView.frame.size = cell.frame.size
+                cell.addSubview(picture.imageView)
+            }
+        }
         cell.layer.cornerRadius = 10
         return cell;
         
@@ -91,11 +90,15 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         if (collectionView.cellForItem(at: indexPath)?.transform.isIdentity)!{
             let isTop = indexPath.item < 2
             var isBottom = false
-            if 0 == imageView.count % 2{
-                isBottom = indexPath.item >= imageView.count-2
+            
+            //make this a method in picture model
+            if 0 == Pictures.shared.count % 2{
+                isBottom = indexPath.item >= Pictures.shared.count-2
             }else{
-                isBottom = indexPath.item >= imageView.count-1
+                isBottom = indexPath.item >= Pictures.shared.count-1
             }
+
+
             animateCellTransform(cell: (collectionView.cellForItem(at: indexPath)), isTop: isTop, isBottom:isBottom, cellScale)
             selectedCell = indexPath.item
             
@@ -133,13 +136,14 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
                 xDistance =  0
                 yDistance = 0
             }else{
-                xDistance =  (centerCellLocation?.midX)! - cell.frame.midX
-                if isTop{
-                    yDistance = (centerCellLocation?.midY)! - cell.frame.midY
-                }
+                xDistance =  (UIScreen.main.bounds.midX) - cell.frame.midX
                 if isBottom{
                     yDistance = (cell.frame.midY-(cell.frame.height/2)) - cell.frame.midY
                 }
+                if isTop{
+                    yDistance = (UIScreen.main.bounds.midY) - cell.frame.midY
+                }
+
             }
             //combines 2 transform methods ie. scale and distance
             //identity is the orginal position

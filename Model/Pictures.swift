@@ -14,7 +14,7 @@ struct Pictures{
     
     static var shared:Pictures = Pictures()
     
-    
+    static let UpdateLoadingNotification = Notification.Name(rawValue: "UpdateLoading")
     static let archiveName = "PhotoAlbum"
     
     private var dataFilePath = ""
@@ -26,9 +26,10 @@ struct Pictures{
         return images.count;
     }
     init(){
-        
-        loadPictures()
-        savePictures()
+       // DispatchQueue.global().async {
+          //  self.loadPictures()
+        //}
+       // savePictures()
     }
 
     func getImage(at index:Int)->Image?
@@ -113,12 +114,13 @@ struct Pictures{
     
     mutating func savePictures(){
         let success = NSKeyedArchiver.archiveRootObject(images, toFile: filePath(fileName: Pictures.archiveName));
-        
-        print(success ? "Successful save" : "Save Failed")
-       // loadPictures()
+        if success{
+            NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
+        }
+
     }
     
-    private mutating func loadPictures(){
+    mutating func loadPictures(){
         
         let filemgr = FileManager.default
         //sort()
@@ -126,18 +128,13 @@ struct Pictures{
             if let images = NSKeyedUnarchiver.unarchiveObject(withFile:filePath(fileName: Pictures.archiveName)) as? [Image]{
                 for i in images{
                     addImage(i);
+                    NotificationCenter.default.post(name: Pictures.UpdateLoadingNotification, object: nil)
                 }
                 
             }
-        }else{
-            print("No images");
         }
     }
-    func listallPictures(){
-        for i in images{
-            print(i)
-        }
-    }
+
     private mutating func sort(){
         images.sort();
     }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E93EDA4D218B714600A1FE4D /* UserCameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* UserCameraData.swift */; };
+		E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* CameraData.swift */; };
 		E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA50218B723000A1FE4D /* Pictures.swift */; };
 		E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */; };
 		E9995DBF219507F200109FDF /* CameraSkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DBE219507F200109FDF /* CameraSkin.swift */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E93EDA4C218B714600A1FE4D /* UserCameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCameraData.swift; sourceTree = "<group>"; };
+		E93EDA4C218B714600A1FE4D /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
 		E93EDA50218B723000A1FE4D /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E9995DBE219507F200109FDF /* CameraSkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSkin.swift; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		E93EDA4B218B712100A1FE4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E93EDA4C218B714600A1FE4D /* UserCameraData.swift */,
+				E93EDA4C218B714600A1FE4D /* CameraData.swift */,
 				E93EDA50218B723000A1FE4D /* Pictures.swift */,
 				E9BD32202190F07800CE8319 /* ImageManipulation.swift */,
 				E9BD32222190F77C00CE8319 /* Image.swift */,
@@ -171,7 +171,7 @@
 				E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */,
 				E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */,
 				E9FA88D3218A24B7007D5AD5 /* AppDelegate.swift in Sources */,
-				E93EDA4D218B714600A1FE4D /* UserCameraData.swift in Sources */,
+				E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */,
 				E9995DC12196400100109FDF /* PhotoOutputDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

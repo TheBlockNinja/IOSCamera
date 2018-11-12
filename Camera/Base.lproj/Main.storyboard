@@ -94,20 +94,22 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="WbP-nA-wUH" appends="YES" id="XQs-Wt-RRW"/>
+                                    <outletCollection property="gestureRecognizers" destination="Eub-Vg-pnt" appends="YES" id="PAD-Dk-Oc3"/>
+                                    <outletCollection property="gestureRecognizers" destination="2FV-wl-ht7" appends="YES" id="vIf-zF-YUD"/>
                                 </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="O43-qj-hNm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="52o-yY-P43"/>
-                            <constraint firstItem="O43-qj-hNm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7SZ-tr-VxY"/>
-                            <constraint firstItem="1uV-a1-WzY" firstAttribute="trailing" secondItem="O43-qj-hNm" secondAttribute="trailing" id="EDe-HB-KtD"/>
+                            <constraint firstItem="O43-qj-hNm" firstAttribute="top" secondItem="1uV-a1-WzY" secondAttribute="top" id="3zS-ad-n11"/>
+                            <constraint firstItem="O43-qj-hNm" firstAttribute="bottom" secondItem="1uV-a1-WzY" secondAttribute="bottom" id="8FI-qj-udY"/>
+                            <constraint firstItem="O43-qj-hNm" firstAttribute="leading" secondItem="1uV-a1-WzY" secondAttribute="leading" id="BMp-64-L79"/>
+                            <constraint firstAttribute="trailing" secondItem="O43-qj-hNm" secondAttribute="trailing" id="KcG-Nl-g7W"/>
                             <constraint firstItem="1uV-a1-WzY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QeI-JN-GeL"/>
-                            <constraint firstItem="1uV-a1-WzY" firstAttribute="bottom" secondItem="O43-qj-hNm" secondAttribute="bottom" id="gTg-mp-5V7"/>
-                            <constraint firstItem="O43-qj-hNm" firstAttribute="top" secondItem="1uV-a1-WzY" secondAttribute="top" id="jst-z2-NPX"/>
-                            <constraint firstItem="O43-qj-hNm" firstAttribute="leading" secondItem="1uV-a1-WzY" secondAttribute="leading" id="l5y-Zq-Lzd"/>
-                            <constraint firstAttribute="trailing" secondItem="O43-qj-hNm" secondAttribute="trailing" id="t3U-gK-y7N"/>
+                            <constraint firstItem="O43-qj-hNm" firstAttribute="trailing" secondItem="1uV-a1-WzY" secondAttribute="trailing" id="UMM-ga-yD1"/>
+                            <constraint firstItem="O43-qj-hNm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="btF-iL-J3M"/>
+                            <constraint firstItem="O43-qj-hNm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="hb0-Vj-Mqc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -123,6 +125,16 @@
                         <action selector="didTapScreen:" destination="BYZ-38-t0r" id="TmK-9G-GbD"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="Eub-Vg-pnt">
+                    <connections>
+                        <action selector="switchCamera:" destination="BYZ-38-t0r" id="cvR-AY-O0c"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.10000000000000001" id="2FV-wl-ht7">
+                    <connections>
+                        <action selector="focusLong:" destination="BYZ-38-t0r" id="5zU-ic-8wM"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-431.19999999999999" y="-143.47826086956522"/>
         </scene>
