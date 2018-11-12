@@ -34,10 +34,8 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         NotificationCenter.default.addObserver(self, selector: #selector(didaddmoreImages), name: Pictures.UpdateLoadingNotification, object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
-        // imageView.removeAll()
         selectedCell = -1
-      
-       // Collection.reloadData()
+
     }
     func setupDeleteButton(){
         deleteButton.setTitle("DEL", for: .normal)
@@ -58,11 +56,11 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         if selectedCell > -1{
             Pictures.shared.deleteImage(at: selectedCell)
             Collection.reloadData();
-            if let items = Collection.indexPathsForSelectedItems{
+           /*if let items = Collection.indexPathsForSelectedItems{
                 for i in items{
                     Collection.deselectItem(at: i, animated: true)
                 }
-            }
+            }*/
             selectedCell = -1
         }
         

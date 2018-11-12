@@ -78,7 +78,9 @@ struct Pictures{
         if let i = getImage(at: index){
             images.remove(at: index);
             dicImages.removeValue(forKey: i.description)
+            
             savePictures()
+            
         }
     }
     mutating func deleteImagesContaining(_ str:String){
@@ -112,10 +114,12 @@ struct Pictures{
     }
 
     
-    mutating func savePictures(){
-        let success = NSKeyedArchiver.archiveRootObject(images, toFile: filePath(fileName: Pictures.archiveName));
-        if success{
-            NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
+    func savePictures(){
+        DispatchQueue.global().async {
+            let success = NSKeyedArchiver.archiveRootObject(self.images, toFile: self.filePath(fileName: Pictures.archiveName));
+            if success{
+                NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
+            }
         }
 
     }
