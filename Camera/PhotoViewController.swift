@@ -18,7 +18,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     let DeleteButtionRect = CGRect(x: 2, y: 2, width: 50, height: 20)
     
-    let cellScale = CGAffineTransform(scaleX: 2, y: 2)
+    let cellScale = CGAffineTransform(scaleX: 1.5, y: 1.5)
     
     let deleteButton = UIButton()
     

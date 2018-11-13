@@ -14,36 +14,38 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate{
     static let PreviewNotification = Notification.Name(rawValue: "PreviewNotification")
     static let SavedImageNotification = Notification.Name(rawValue: "SavedImageNotification")
     var CurrentPreviewImage:UIImage?
-    private let rotateImage:CGFloat = ((180.0 * .pi) / 180) / -2
+    private let rotatePreviewImage:CGFloat = ((180.0 * .pi) / 180)
+    
+    
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         let imagePreview = photo.previewPixelBuffer
         
         if let imgP = imagePreview{
             let tempImage = CIImage(cvPixelBuffer:imgP)
-            let newImage = tempImage.transformed(by: (CGAffineTransform(rotationAngle: rotateImage)))
+            let newImage = tempImage.transformed(by: (CGAffineTransform(rotationAngle: rotatePreviewImage)))
             
             let ciContext = CIContext()
             let cgImage = ciContext.createCGImage(newImage, from: newImage.extent)
             CurrentPreviewImage = UIImage(cgImage: cgImage!)
-          
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }
         
         DispatchQueue.global().async {
             // Download file or perform expensive task
-            PhotoOutputDelegate.saveImage(photo: photo)
+            self.saveImage(photo: photo,output)
         }
     }
 
-    static func saveImage(photo:AVCapturePhoto){
+    func saveImage(photo:AVCapturePhoto,_ output: AVCapturePhotoOutput){
+        
         let imageData = photo.fileDataRepresentation()
         if let imageData = imageData{
            let image =  UIImage(data: imageData)!
         
             let compressed = image.jpegData(compressionQuality: 0.5)
             let newImg = Image(image: UIImage(data: compressed!)!);
-            
+
             Pictures.shared.addImage(newImg);
             Pictures.shared.savePictures();
            

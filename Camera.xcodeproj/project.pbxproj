@@ -11,6 +11,7 @@
 		E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* CameraData.swift */; };
 		E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA50218B723000A1FE4D /* Pictures.swift */; };
 		E960389B219A0EE800B64139 /* CameraFilterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960389A219A0EE800B64139 /* CameraFilterLayer.swift */; };
+		E960389E219B840600B64139 /* PhotoViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960389D219B840600B64139 /* PhotoViewControllerBase.swift */; };
 		E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */; };
 		E9995DBF219507F200109FDF /* CameraSkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DBE219507F200109FDF /* CameraSkin.swift */; };
 		E9995DC12196400100109FDF /* PhotoOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */; };
@@ -28,6 +29,7 @@
 		E93EDA4C218B714600A1FE4D /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
 		E93EDA50218B723000A1FE4D /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		E960389A219A0EE800B64139 /* CameraFilterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFilterLayer.swift; sourceTree = "<group>"; };
+		E960389D219B840600B64139 /* PhotoViewControllerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewControllerBase.swift; sourceTree = "<group>"; };
 		E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E9995DBE219507F200109FDF /* CameraSkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSkin.swift; sourceTree = "<group>"; };
 		E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOutputDelegate.swift; sourceTree = "<group>"; };
@@ -66,9 +68,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E960389C219B59F300B64139 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		E9FA88C6218A24B7007D5AD5 = {
 			isa = PBXGroup;
 			children = (
+				E960389C219B59F300B64139 /* Images */,
 				E93EDA4B218B712100A1FE4D /* Model */,
 				E9FA88D1218A24B7007D5AD5 /* Camera */,
 				E9FA88D0218A24B7007D5AD5 /* Products */,
@@ -86,6 +96,7 @@
 		E9FA88D1218A24B7007D5AD5 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				E960389D219B840600B64139 /* PhotoViewControllerBase.swift */,
 				E9FA88D2218A24B7007D5AD5 /* AppDelegate.swift */,
 				E9FA88D4218A24B7007D5AD5 /* ViewController.swift */,
 				E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */,
@@ -178,6 +189,7 @@
 				E960389B219A0EE800B64139 /* CameraFilterLayer.swift in Sources */,
 				E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */,
 				E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */,
+				E960389E219B840600B64139 /* PhotoViewControllerBase.swift in Sources */,
 				E9FA88D3218A24B7007D5AD5 /* AppDelegate.swift in Sources */,
 				E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */,
 				E9995DC12196400100109FDF /* PhotoOutputDelegate.swift in Sources */,

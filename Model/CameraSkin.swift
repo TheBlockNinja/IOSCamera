@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+struct cameraSettings{
+    static let cameras:[cameraSettings] = [cameraSettings(name:"DSLR",hasFlash: true, autoFocus: true, CameraSkin: nil)]
+    
+    
+    var name:String
+    var hasFlash:Bool
+    var autoFocus:Bool
+    var CameraSkin:UIImage? = nil
+    //other filters
+    
+}
+
 struct CameraSkin{
     //create a static array of camera skins
     

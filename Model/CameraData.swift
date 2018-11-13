@@ -10,19 +10,29 @@ import Foundation
 import UIKit
 import AVFoundation
 
+
 struct CameraData{
+    
+    
+    static let takePictureNotification = Notification.Name(rawValue: "TakePictureNotifcation")
+    
     let session = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     let previewVideoLayer = AVCaptureVideoPreviewLayer()
-    
+    //add another preview layer for a scaled version
     
     private var position = AVCaptureDevice.Position.back
     private var quailty = AVCaptureSession.Preset.high
     private var currentCamera:AVCaptureDevice?
+    private var autoFocus:Bool = false
     
     init() {
         configureSession()
         setupPreview()
+    }
+    mutating func setAutoFocus(_ focus:Bool){
+        autoFocus = focus
+        configureSession()
     }
     mutating func flipPostion(){
         if position == .back{
@@ -44,8 +54,13 @@ struct CameraData{
     func setPreviewFrame(_ rect:CGRect){
         previewVideoLayer.frame = rect
     }
-    func getPhotoSettings()->AVCapturePhotoSettings{
+    func getPhotoSettings(flash:Bool)->AVCapturePhotoSettings{
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+        if flash{
+            settings.flashMode = .auto
+        }else{
+            settings.flashMode = .off
+        }
         if settings.availablePreviewPhotoPixelFormatTypes.count > 0{
             settings.previewPhotoFormat = [
                 kCVPixelBufferPixelFormatTypeKey : settings.availablePreviewPhotoPixelFormatTypes.first!,
@@ -59,11 +74,11 @@ struct CameraData{
         
        try? currentCamera?.lockForConfiguration()
         //check focus mode
-        if (currentCamera?.isFocusPointOfInterestSupported)! {
+        if (currentCamera?.isFocusPointOfInterestSupported)! && !autoFocus{
             currentCamera?.focusMode = .autoFocus
             currentCamera?.focusPointOfInterest = point
         }
-        if (currentCamera?.isExposurePointOfInterestSupported)!{
+        if (currentCamera?.isExposurePointOfInterestSupported)! && !autoFocus{
             currentCamera?.exposureMode = .autoExpose
             currentCamera?.exposurePointOfInterest = point
         }
@@ -75,7 +90,7 @@ struct CameraData{
         session.stopRunning()
         
         session.beginConfiguration()
-        
+    
         session.sessionPreset = quailty
         let camera = getCamera()
         currentCamera = camera
@@ -96,6 +111,12 @@ struct CameraData{
     }
     private func addInput(camera:AVCaptureDevice?){
         if let camera = camera {
+            if autoFocus{
+            try? camera.lockForConfiguration()
+                camera.focusMode =  .continuousAutoFocus
+                camera.exposureMode = .continuousAutoExposure
+                camera.unlockForConfiguration()
+            }
             applyCameraSettings(camera: camera)
             let inputCamera = try? AVCaptureDeviceInput(device: camera)
             if let inputCamera = inputCamera{
@@ -109,6 +130,8 @@ struct CameraData{
     private func setupOutput(){
         photoOutput.isLivePhotoCaptureEnabled = false;
         photoOutput.isHighResolutionCaptureEnabled = true;
+        
+
     }
     private func applyCameraSettings(camera:AVCaptureDevice){
         
@@ -137,8 +160,9 @@ struct CameraData{
     }
     private func setupPreview(){
         previewVideoLayer.videoGravity = .resizeAspect
-        previewVideoLayer.connection?.videoOrientation = .portrait
+        previewVideoLayer.connection?.videoOrientation = .landscapeLeft
     }
+
 }
 
 
