@@ -24,6 +24,9 @@ class ViewController: UIViewController {
         previewImage.contentMode = .scaleAspectFit
         previewCameraFeed.layer.addSublayer(camera.previewVideoLayer)
         camera.setPreviewFrame(previewCameraFeed.frame)
+        DispatchQueue.global().async {
+            Pictures.shared.loadPictures()
+        }
     }
     override func viewDidDisappear(_ animated: Bool) {
         camera.session.stopRunning()

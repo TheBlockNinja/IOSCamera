@@ -41,17 +41,11 @@ struct CameraData{
         configureSession()
     }
     
-    
-
-
-    
     func setPreviewFrame(_ rect:CGRect){
         previewVideoLayer.frame = rect
     }
     func getPhotoSettings()->AVCapturePhotoSettings{
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-        
-        
         if settings.availablePreviewPhotoPixelFormatTypes.count > 0{
             settings.previewPhotoFormat = [
                 kCVPixelBufferPixelFormatTypeKey : settings.availablePreviewPhotoPixelFormatTypes.first!,
