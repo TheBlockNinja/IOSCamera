@@ -25,12 +25,6 @@ struct Pictures{
     var count:Int{
         return images.count;
     }
-    init(){
-       // DispatchQueue.global().async {
-          //  self.loadPictures()
-        //}
-       // savePictures()
-    }
 
     func getImage(at index:Int)->Image?
     {

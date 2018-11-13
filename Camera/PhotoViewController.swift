@@ -26,16 +26,17 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.global().async {
-            Pictures.shared.loadPictures()
-        }
         setupDeleteButton()
         NotificationCenter.default.addObserver(self, selector: #selector(didaddmoreImages), name: PhotoOutputDelegate.SavedImageNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didaddmoreImages), name: Pictures.UpdateLoadingNotification, object: nil)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        selectedCell = -1
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if let items = Collection.indexPathsForSelectedItems{
+            for i in items{
+                Collection.deselectItem(at: i, animated: true)
+            }
+        }
     }
     func setupDeleteButton(){
         deleteButton.setTitle("DEL", for: .normal)
@@ -48,7 +49,6 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
 
     @objc func didaddmoreImages(){
         DispatchQueue.main.async {
-           // self.updateImages()
             self.Collection.reloadData()
         }
     }
@@ -56,14 +56,8 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         if selectedCell > -1{
             Pictures.shared.deleteImage(at: selectedCell)
             Collection.reloadData();
-           /*if let items = Collection.indexPathsForSelectedItems{
-                for i in items{
-                    Collection.deselectItem(at: i, animated: true)
-                }
-            }*/
             selectedCell = -1
         }
-        
     }
 
     
@@ -122,18 +116,19 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     }
 
     
+
+    
     private func animateCellTransform(cell:UICollectionViewCell?,isTop:Bool=false,isBottom:Bool=false,_ transf:CGAffineTransform=CGAffineTransform.identity){
         if let cell = cell{ //Checks if Cell exits
             
             //brings current cell to front of other UIViews(UICollectionView Cell)
             Collection.bringSubviewToFront(cell)
+            
             //creates Distance stored variables
             var xDistance:CGFloat = 0
             var yDistance:CGFloat = 0
-            if transf == CGAffineTransform.identity{
-                xDistance =  0
-                yDistance = 0
-            }else{
+            
+            if transf != CGAffineTransform.identity{
                 xDistance =  (UIScreen.main.bounds.midX) - cell.frame.midX
                 if isBottom{
                     yDistance = (cell.frame.midY-(cell.frame.height/2)) - cell.frame.midY
@@ -141,27 +136,28 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
                 if isTop{
                     yDistance = (UIScreen.main.bounds.midY) - cell.frame.midY
                 }
-
             }
             //combines 2 transform methods ie. scale and distance
             //identity is the orginal position
+            
             let combineTransfrom = transf.concatenating(CGAffineTransform(translationX: xDistance, y: yDistance))
-            UIView.animate(withDuration: 0.15, animations: {
-                cell.transform = combineTransfrom
-            }){ (true) in
-                if cell.transform.isIdentity{
-                    if self.deleteButton.isDescendant(of: cell){
-                        self.deleteButton.removeFromSuperview()
-                    }
-                }else{
-                    if !self.deleteButton.isDescendant(of: cell){
-                       cell.addSubview(self.deleteButton)
-                    }
-                }
-           
-            }
+            focusOn(cell, combineTransfrom)
         }
-        
-        
+    }
+    private func focusOn(_ cell: UICollectionViewCell, _ combineTransfrom: CGAffineTransform) {
+        UIView.animate(withDuration: 0.15, animations: {
+            cell.transform = combineTransfrom
+        }){ (true) in
+            if cell.transform.isIdentity{
+                if self.deleteButton.isDescendant(of: cell){
+                    self.deleteButton.removeFromSuperview()
+                }
+            }else{
+                if !self.deleteButton.isDescendant(of: cell){
+                    cell.addSubview(self.deleteButton)
+                }
+            }
+            
+        }
     }
 }

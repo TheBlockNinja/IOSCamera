@@ -30,12 +30,9 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate{
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.global().async {
             // Download file or perform expensive task
             PhotoOutputDelegate.saveImage(photo: photo)
-            DispatchQueue.main.async {
-                // Update the UI
-            }
         }
     }
 
