@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D51AD66219A382E008F4B6E /* SettingsViewController.swift */; };
 		E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* CameraData.swift */; };
 		E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA50218B723000A1FE4D /* Pictures.swift */; };
 		E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D51AD66219A382E008F4B6E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E93EDA4C218B714600A1FE4D /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
 		E93EDA50218B723000A1FE4D /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				E9FA88DB218A24BA007D5AD5 /* LaunchScreen.storyboard */,
 				E9FA88DE218A24BA007D5AD5 /* Info.plist */,
 				E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */,
+				9D51AD66219A382E008F4B6E /* SettingsViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */,
 				E9995DBF219507F200109FDF /* CameraSkin.swift in Sources */,
 				E9BD32232190F77C00CE8319 /* Image.swift in Sources */,
+				9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */,
 				E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */,
 				E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */,
 				E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */,
