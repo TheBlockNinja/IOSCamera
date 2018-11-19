@@ -10,69 +10,63 @@
 import AVFoundation
 import UIKit
 
-
+//all camera view controllers will inherit from this class
+//contains basic functions in which they will all use
 class BaseCameraViewController:UIViewController{
-    var camera = CameraData()
-    
     private var previewCameraFeed: UIView!
+    
+    private var smallCameraFeed: UIView!
     
     private var previewImage: UIImageView!
     
-    private var photoDelegate:PhotoOutputDelegate = PhotoOutputDelegate()
+    private var currentCamera = CameraSettings.PointAndShoot
     
-    var currentCamera = cameraSettings.cameras[0]
     
-    func addConnections(previewCameraFeed: UIView,previewImage: UIImageView,cameraSettings:cameraSettings){
+    override func viewWillAppear(_ animated: Bool) {
+        setFocused()
+    }
+    
+    func addConnections(previewCameraFeed: UIView,previewImage: UIImageView,cameraSettings:CameraSettings){
         self.previewCameraFeed = previewCameraFeed
         self.previewImage = previewImage
         currentCamera = cameraSettings
         setup()
+        setFocused()
     }
-    private func setup(){
-        previewImage.contentMode = .scaleAspectFit
-        previewCameraFeed.layer.addSublayer(camera.previewVideoLayer)
-        camera.setPreviewFrame(previewCameraFeed.frame)
-        DispatchQueue.global().async {
-            Pictures.shared.loadPictures()
+
+    func setFocused(){
+        UICamera.shared.setupCamera(cameraFeed: previewCameraFeed, photoOutput: previewImage)
+        UICamera.shared.setCameraSettings(currentCamera)
+    }
+    
+    @objc func takePicture(){
+        UICamera.shared.takePicture()
+    }
+    
+    @objc private func showPreview(){
+        if let previewImage = previewImage{
+            previewImage.image = UICamera.shared.photoDelegate.CurrentPreviewImage
+            let scaletransform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+            UIView.animate(withDuration: 1.0, animations: {
+                self.previewImage.transform = scaletransform
+            }) { (true) in
+                previewImage.transform = CGAffineTransform.identity
+                previewImage.image = nil;
+                
+            }
         }
+    }
+
+    private func setup(){
+        previewImage.contentMode = currentCamera.contentMode
         addNotifications()
-        camera.setAutoFocus(currentCamera.autoFocus)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        camera.session.stopRunning()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        camera.session.startRunning()
-    }
-    
     
     private func addNotifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(showPreview), name: PhotoOutputDelegate.PreviewNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(takePicture), name: CameraData.takePictureNotification, object: nil)
     }
-    
-    @objc func showPreview(){
-        if let previewImage = previewImage{
-            previewImage.image = photoDelegate.CurrentPreviewImage
-            UIView.animate(withDuration: 1.0, animations: {
-                self.previewImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            }) { (true) in
-                previewImage.transform = CGAffineTransform.identity
-                previewImage.image = nil;
-            
-            }
-        }
-    }
-    @objc func takePicture(){
-        if let output = camera.photoOutput.connection(with: .video){
-            output.videoOrientation = .landscapeLeft
-            print("updated")
-        }else{
-            print("failed")
-        }
-        camera.photoOutput.capturePhoto(with: camera.getPhotoSettings(flash: currentCamera.hasFlash), delegate: photoDelegate)
-    }
+
     
     
     

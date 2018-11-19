@@ -8,6 +8,5 @@
 
 import Foundation
 import AVKit
-class CameraFilerLayer {
-    
-}
+import AVFoundation
+

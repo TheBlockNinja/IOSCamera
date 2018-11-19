@@ -75,22 +75,16 @@ class Image:NSObject,NSCoding,Comparable{
     func encode(with aCoder: NSCoder) {
         aCoder.encode(data, forKey: Image.imageSaveName)
         aCoder.encode(name, forKey: "NAME");
-        aCoder.encode(info, forKey: Image.InfoSaveName);
-      //  aCoder.encode(orgininalImage, forKey: Image.imageOriginalSaveName);
-        
+        aCoder.encode(info, forKey: Image.InfoSaveName)
     }
     required convenience init?(coder aDecoder: NSCoder) {
-       //let i = UIImage.init
-        
         let img = aDecoder.decodeObject(forKey: Image.imageSaveName) as? UIImage
-      //  let original = aDecoder.decodeObject(forKey: Image.imageOriginalSaveName) as? UIImage
         let nam = aDecoder.decodeObject(forKey: Image.nameSaveName)
         let inf = aDecoder.decodeObject(forKey: Image.InfoSaveName)
         
         if let img = img,let name = nam as? String{
             self.init(name: name, image: img);
         }else{
-            //fatalError("UNABLE TO LOAD IMAGES");
             self.init(image: img ?? UIImage())
         }
         if let inf = inf as? String{

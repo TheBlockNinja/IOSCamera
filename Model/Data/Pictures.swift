@@ -8,24 +8,25 @@
 
 import Foundation
 import UIKit
-
+import Photos
 struct Pictures{
     //Shared Instance of Pictures (Singleton Model)
     
-    static var shared:Pictures = Pictures()
     
     static let UpdateLoadingNotification = Notification.Name(rawValue: "UpdateLoading")
+    static let SavedToCameraRollNotification = Notification.Name(rawValue: "SavedToCameraRollNotification")
     static let archiveName = "PhotoAlbum"
     
     private var dataFilePath = ""
     private var images:[Image] = [];
-    private var dicImages:[String:Image] = [:];
-    private var selectedImages:[Int] = []
+    private var selectedImages:[Int] = [] // not in use yet
+    private var picturesAreLoaded = false // to prevent loading images multiplute times, just in case
     
     var count:Int{
         return images.count;
     }
 
+    
     func getImage(at index:Int)->Image?
     {
         if index >= 0 && index < images.count{
@@ -34,33 +35,51 @@ struct Pictures{
         return nil
     }
     
-    func getImage(with name:String)->Image?{
-        return dicImages[name]
-    }
-    
-    func getImagesContaining(_ str:String)->[Image]{
-        var imgs:[Image] = []
-        for i in images{
-            if i.conatains(str){
-                imgs.append(i);
+    func savePictures(){
+        DispatchQueue.global().async {
+            let success = NSKeyedArchiver.archiveRootObject(self.images, toFile: self.filePath(fileName: Pictures.archiveName));
+            if success{
+                NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
             }
         }
-        return imgs;
+        
     }
+    func isBottom(index:Int)->Bool{
+        if index < 0{
+            return false
+        }
+        if 0 == count % 2{
+            return index >= count-2
+        }else{
+            return index >= count-1
+        }
+    }
+    
+    func isTop(index:Int)->Bool{
+        if index >= 0{
+            return index < 2;
+        }
+        return false
+    }
+    
+    func saveImageToCameraRoll(at index:Int){
+        if let image = getImage(at: index)?.data {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }) { (didSaveImage, DidThrowError) in
+                if didSaveImage{
+                    NotificationCenter.default.post(name: Pictures.SavedToCameraRollNotification, object: nil)
+                }
+            }
+        }
+    }
+    
     func getAllImages()->[Image]{
         return images;
     }
     
     mutating func addImage(_ img:Image){
-        var isFound = false
-        if let _ = getImage(with:img.description){
-            isFound = true
-        }
-        if isFound{
-            img.name = "img_\(images.count)";
-        }
         images.append(img);
-        dicImages[img.description]=img;
     }
     mutating func addImages(_ img:[Image]){
         for i in img{
@@ -69,25 +88,13 @@ struct Pictures{
     }
     
     mutating func deleteImage(at index:Int){
-        if let i = getImage(at: index){
+        if let _ = getImage(at: index){
             images.remove(at: index);
-            dicImages.removeValue(forKey: i.description)
-            
             savePictures()
-            
         }
-    }
-    mutating func deleteImagesContaining(_ str:String){
-        let i = getImagesContaining(str)
-        for img in i {
-            if let index = images.firstIndex(of: img){
-                deleteImage(at: index)
-            }
-        }
-  
-        
     }
     
+    //has no use yet
     //selects and deselects Images
     mutating func selectImagesBetween(index1:Int,index2:Int){
         for i in index1..<index2{
@@ -106,24 +113,16 @@ struct Pictures{
     mutating func deSelectAllImages(){
         selectedImages.removeAll();
     }
-
+    //ends no use yet
     
-    func savePictures(){
-        DispatchQueue.global().async {
-            let success = NSKeyedArchiver.archiveRootObject(self.images, toFile: self.filePath(fileName: Pictures.archiveName));
-            if success{
-                NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
-            }
-        }
 
-    }
-    
     mutating func loadPictures(){
         
         let filemgr = FileManager.default
-        //sort()
+        if !picturesAreLoaded{
         if filemgr.fileExists(atPath: filePath(fileName: Pictures.archiveName)){
             if let images = NSKeyedUnarchiver.unarchiveObject(withFile:filePath(fileName: Pictures.archiveName)) as? [Image]{
+                picturesAreLoaded = true
                 for i in images{
                     addImage(i);
                     NotificationCenter.default.post(name: Pictures.UpdateLoadingNotification, object: nil)
@@ -131,15 +130,20 @@ struct Pictures{
                 
             }
         }
+        }
     }
-
-    private mutating func sort(){
-        images.sort();
-    }
-    func filePath(fileName:String) -> String {
+    
+    private func filePath(fileName:String) -> String {
         let fileManager = FileManager.default
         let directory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         return (directory!.appendingPathComponent(fileName).path)
     }
+    
+    private mutating func sort(){
+        images.sort();
+    }
+
+    
+
 }
 

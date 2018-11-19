@@ -10,15 +10,21 @@
 		9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D51AD66219A382E008F4B6E /* SettingsViewController.swift */; };
 		E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* CameraData.swift */; };
 		E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA50218B723000A1FE4D /* Pictures.swift */; };
+		E9430FE2219CEC7600D40221 /* DSLRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FE1219CEC7600D40221 /* DSLRViewController.swift */; };
+		E9430FE4219CEC8600D40221 /* OldSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FE3219CEC8600D40221 /* OldSchoolViewController.swift */; };
+		E9430FE6219DF8E500D40221 /* UICamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FE5219DF8E500D40221 /* UICamera.swift */; };
+		E9430FE821A0A0C300D40221 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FE721A0A0C300D40221 /* UserData.swift */; };
+		E9430FEA21A0A0E300D40221 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FE921A0A0E300D40221 /* UIViewExtension.swift */; };
+		E9430FEC21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FEB21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift */; };
 		E960389B219A0EE800B64139 /* CameraFilterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960389A219A0EE800B64139 /* CameraFilterLayer.swift */; };
 		E960389E219B840600B64139 /* PhotoViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960389D219B840600B64139 /* PhotoViewControllerBase.swift */; };
 		E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */; };
-		E9995DBF219507F200109FDF /* CameraSkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DBE219507F200109FDF /* CameraSkin.swift */; };
+		E9995DBF219507F200109FDF /* CameraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DBE219507F200109FDF /* CameraSettings.swift */; };
 		E9995DC12196400100109FDF /* PhotoOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */; };
 		E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BD32202190F07800CE8319 /* ImageManipulation.swift */; };
 		E9BD32232190F77C00CE8319 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BD32222190F77C00CE8319 /* Image.swift */; };
 		E9FA88D3218A24B7007D5AD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FA88D2218A24B7007D5AD5 /* AppDelegate.swift */; };
-		E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FA88D4218A24B7007D5AD5 /* ViewController.swift */; };
+		E9FA88D5218A24B7007D5AD5 /* PointAndShootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FA88D4218A24B7007D5AD5 /* PointAndShootViewController.swift */; };
 		E9FA88D8218A24B7007D5AD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FA88D6218A24B7007D5AD5 /* Main.storyboard */; };
 		E9FA88DA218A24BA007D5AD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9FA88D9218A24BA007D5AD5 /* Assets.xcassets */; };
 		E9FA88DD218A24BA007D5AD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9FA88DB218A24BA007D5AD5 /* LaunchScreen.storyboard */; };
@@ -28,16 +34,22 @@
 		9D51AD66219A382E008F4B6E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E93EDA4C218B714600A1FE4D /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
 		E93EDA50218B723000A1FE4D /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
+		E9430FE1219CEC7600D40221 /* DSLRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLRViewController.swift; sourceTree = "<group>"; };
+		E9430FE3219CEC8600D40221 /* OldSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSchoolViewController.swift; sourceTree = "<group>"; };
+		E9430FE5219DF8E500D40221 /* UICamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICamera.swift; sourceTree = "<group>"; };
+		E9430FE721A0A0C300D40221 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		E9430FE921A0A0E300D40221 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		E9430FEB21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		E960389A219A0EE800B64139 /* CameraFilterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFilterLayer.swift; sourceTree = "<group>"; };
 		E960389D219B840600B64139 /* PhotoViewControllerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewControllerBase.swift; sourceTree = "<group>"; };
 		E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		E9995DBE219507F200109FDF /* CameraSkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSkin.swift; sourceTree = "<group>"; };
+		E9995DBE219507F200109FDF /* CameraSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSettings.swift; sourceTree = "<group>"; };
 		E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOutputDelegate.swift; sourceTree = "<group>"; };
 		E9BD32202190F07800CE8319 /* ImageManipulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManipulation.swift; sourceTree = "<group>"; };
 		E9BD32222190F77C00CE8319 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		E9FA88CF218A24B7007D5AD5 /* Camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FA88D2218A24B7007D5AD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9FA88D4218A24B7007D5AD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E9FA88D4218A24B7007D5AD5 /* PointAndShootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAndShootViewController.swift; sourceTree = "<group>"; };
 		E9FA88D7218A24B7007D5AD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9FA88D9218A24BA007D5AD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9FA88DC218A24BA007D5AD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,14 +70,47 @@
 		E93EDA4B218B712100A1FE4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E93EDA4C218B714600A1FE4D /* CameraData.swift */,
-				E93EDA50218B723000A1FE4D /* Pictures.swift */,
+				E9430FE921A0A0E300D40221 /* UIViewExtension.swift */,
+				E9430FE5219DF8E500D40221 /* UICamera.swift */,
+				E9430FE0219CEC3900D40221 /* Data */,
+				E9430FDF219CEC2700D40221 /* Delegates */,
 				E9BD32202190F07800CE8319 /* ImageManipulation.swift */,
-				E9BD32222190F77C00CE8319 /* Image.swift */,
-				E9995DBE219507F200109FDF /* CameraSkin.swift */,
 				E960389A219A0EE800B64139 /* CameraFilterLayer.swift */,
+				E9430FE721A0A0C300D40221 /* UserData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E9430FDE219CEBCB00D40221 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9FA88D4218A24B7007D5AD5 /* PointAndShootViewController.swift */,
+				E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */,
+				E9430FE1219CEC7600D40221 /* DSLRViewController.swift */,
+				E9430FE3219CEC8600D40221 /* OldSchoolViewController.swift */,
+				9D51AD66219A382E008F4B6E /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E9430FDF219CEC2700D40221 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */,
+				E9430FEB21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		E9430FE0219CEC3900D40221 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E9995DBE219507F200109FDF /* CameraSettings.swift */,
+				E93EDA50218B723000A1FE4D /* Pictures.swift */,
+				E9BD32222190F77C00CE8319 /* Image.swift */,
+				E93EDA4C218B714600A1FE4D /* CameraData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		E960389C219B59F300B64139 /* Images */ = {
@@ -97,15 +142,12 @@
 			isa = PBXGroup;
 			children = (
 				E960389D219B840600B64139 /* PhotoViewControllerBase.swift */,
+				E9430FDE219CEBCB00D40221 /* ViewControllers */,
 				E9FA88D2218A24B7007D5AD5 /* AppDelegate.swift */,
-				E9FA88D4218A24B7007D5AD5 /* ViewController.swift */,
-				E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */,
 				E9FA88D6218A24B7007D5AD5 /* Main.storyboard */,
 				E9FA88D9218A24BA007D5AD5 /* Assets.xcassets */,
 				E9FA88DB218A24BA007D5AD5 /* LaunchScreen.storyboard */,
 				E9FA88DE218A24BA007D5AD5 /* Info.plist */,
-				E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */,
-				9D51AD66219A382E008F4B6E /* SettingsViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -182,14 +224,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E93EDA51218B723000A1FE4D /* Pictures.swift in Sources */,
-				E9995DBF219507F200109FDF /* CameraSkin.swift in Sources */,
+				E9995DBF219507F200109FDF /* CameraSettings.swift in Sources */,
+				E9430FE821A0A0C300D40221 /* UserData.swift in Sources */,
+				E9430FE4219CEC8600D40221 /* OldSchoolViewController.swift in Sources */,
 				E9BD32232190F77C00CE8319 /* Image.swift in Sources */,
 				9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */,
+				E9430FEC21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift in Sources */,
 				E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */,
 				E960389B219A0EE800B64139 /* CameraFilterLayer.swift in Sources */,
-				E9FA88D5218A24B7007D5AD5 /* ViewController.swift in Sources */,
+				E9430FEA21A0A0E300D40221 /* UIViewExtension.swift in Sources */,
+				E9FA88D5218A24B7007D5AD5 /* PointAndShootViewController.swift in Sources */,
 				E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */,
+				E9430FE6219DF8E500D40221 /* UICamera.swift in Sources */,
 				E960389E219B840600B64139 /* PhotoViewControllerBase.swift in Sources */,
+				E9430FE2219CEC7600D40221 /* DSLRViewController.swift in Sources */,
 				E9FA88D3218A24B7007D5AD5 /* AppDelegate.swift in Sources */,
 				E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */,
 				E9995DC12196400100109FDF /* PhotoOutputDelegate.swift in Sources */,
