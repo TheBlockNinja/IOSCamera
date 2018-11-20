@@ -161,6 +161,17 @@
                                     <outletCollection property="gestureRecognizers" destination="X1N-wI-uUE" appends="YES" id="pQa-em-DuW"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X5-xl-dW7">
+                                <rect key="frame" x="10" y="10" width="97" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="Kfj-GK-XwD"/>
+                                </constraints>
+                                <state key="normal" title="Take Picture"/>
+                                <connections>
+                                    <action selector="willTakePicture:" destination="Ues-gV-4ke" eventType="touchUpInside" id="eU4-ij-wUV"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93E-Ll-VSj">
                                 <rect key="frame" x="561" y="20" width="86" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -189,9 +200,11 @@
                             <constraint firstItem="oyq-8g-LyD" firstAttribute="top" secondItem="Q4Q-sP-OVT" secondAttribute="top" id="Tzn-If-JRU"/>
                             <constraint firstItem="Vjf-Fa-eZO" firstAttribute="top" secondItem="oyq-8g-LyD" secondAttribute="top" id="ayQ-VX-xAr"/>
                             <constraint firstItem="93E-Ll-VSj" firstAttribute="trailing" secondItem="u3l-M3-5Bq" secondAttribute="trailing" constant="-20" id="gCk-5A-dDb"/>
+                            <constraint firstItem="8X5-xl-dW7" firstAttribute="leading" secondItem="Q4Q-sP-OVT" secondAttribute="leading" constant="10" id="ncc-mu-uMO"/>
                             <constraint firstItem="Vjf-Fa-eZO" firstAttribute="trailing" secondItem="93E-Ll-VSj" secondAttribute="trailing" constant="20" id="sia-LT-chk"/>
                             <constraint firstItem="93E-Ll-VSj" firstAttribute="trailing" secondItem="oyq-8g-LyD" secondAttribute="trailing" constant="-20" id="tzx-uC-djY"/>
                             <constraint firstItem="Vjf-Fa-eZO" firstAttribute="bottom" secondItem="u3l-M3-5Bq" secondAttribute="bottom" id="v2p-6Q-nxU"/>
+                            <constraint firstItem="8X5-xl-dW7" firstAttribute="top" secondItem="Q4Q-sP-OVT" secondAttribute="top" constant="10" id="v3X-iz-XVz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q4Q-sP-OVT"/>
                     </view>
@@ -214,11 +227,7 @@
                         <action selector="longGesture:" destination="Ues-gV-4ke" id="MLr-pC-E09"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <tapGestureRecognizer cancelsTouchesInView="NO" numberOfTapsRequired="2" id="X1N-wI-uUE">
-                    <connections>
-                        <action selector="doubleTapGesture:" destination="Ues-gV-4ke" id="Fcq-XW-tHP"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer cancelsTouchesInView="NO" numberOfTapsRequired="2" id="X1N-wI-uUE"/>
             </objects>
             <point key="canvasLocation" x="-2409.4452773613193" y="116"/>
         </scene>
@@ -268,6 +277,17 @@
                                     <outletCollection property="gestureRecognizers" destination="WbP-nA-wUH" appends="YES" id="HX2-4U-GuY"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qz0-xv-8qs">
+                                <rect key="frame" x="10" y="10" width="97" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="ZHf-RY-nSv"/>
+                                </constraints>
+                                <state key="normal" title="Take Picture"/>
+                                <connections>
+                                    <action selector="didTapScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lam-2k-Q0g"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d61-wD-MoP">
                                 <rect key="frame" x="576" y="19" width="75" height="33"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -283,6 +303,7 @@
                         <constraints>
                             <constraint firstItem="YAo-HP-OhR" firstAttribute="leading" secondItem="1uV-a1-WzY" secondAttribute="leading" id="6nE-xO-ybA"/>
                             <constraint firstItem="O43-qj-hNm" firstAttribute="leading" secondItem="1uV-a1-WzY" secondAttribute="leading" id="8gP-ia-pgB"/>
+                            <constraint firstItem="Qz0-xv-8qs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="IoL-9E-qAN"/>
                             <constraint firstItem="d61-wD-MoP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="LAL-zP-eOa"/>
                             <constraint firstItem="d61-wD-MoP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="576" id="Ljt-Ef-TmX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d61-wD-MoP" secondAttribute="trailing" constant="16" id="Q2a-NI-xWf"/>
@@ -290,6 +311,7 @@
                             <constraint firstItem="O43-qj-hNm" firstAttribute="bottom" secondItem="1uV-a1-WzY" secondAttribute="bottom" id="XGD-2M-yYZ"/>
                             <constraint firstItem="YAo-HP-OhR" firstAttribute="bottom" secondItem="O43-qj-hNm" secondAttribute="bottom" id="Xo2-CO-KKI"/>
                             <constraint firstItem="YAo-HP-OhR" firstAttribute="top" secondItem="O43-qj-hNm" secondAttribute="top" id="cw3-iN-dg0"/>
+                            <constraint firstItem="Qz0-xv-8qs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ekd-zb-LPi"/>
                             <constraint firstItem="O43-qj-hNm" firstAttribute="top" secondItem="1uV-a1-WzY" secondAttribute="top" id="eq2-Od-Uy5"/>
                             <constraint firstItem="O43-qj-hNm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="lcj-IJ-cq5"/>
                             <constraint firstItem="O43-qj-hNm" firstAttribute="trailing" secondItem="1uV-a1-WzY" secondAttribute="trailing" id="oV2-Va-APS"/>
@@ -318,11 +340,7 @@
                         <action selector="switchCamera:" destination="BYZ-38-t0r" id="cvR-AY-O0c"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <tapGestureRecognizer cancelsTouchesInView="NO" numberOfTapsRequired="2" id="WbP-nA-wUH">
-                    <connections>
-                        <action selector="didTapScreen:" destination="BYZ-38-t0r" id="TmK-9G-GbD"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer cancelsTouchesInView="NO" numberOfTapsRequired="2" id="WbP-nA-wUH"/>
             </objects>
             <point key="canvasLocation" x="-3889.2053973013494" y="116"/>
         </scene>

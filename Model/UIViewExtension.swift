@@ -11,8 +11,10 @@ import UIKit
 extension UIView{
     //creates a tempory label that will appear on top of any obj that inherits the UIView
     func showLabelWith(frame:CGRect,text:String,duration:Double){
+        
         //creates and sets up the label
         let lbl = UILabel(frame: frame)
+        
         //moves label to the front of the current view
         self.bringSubviewToFront(lbl)
         lbl.backgroundColor = .gray
@@ -21,12 +23,15 @@ extension UIView{
         lbl.font = UIFont.boldSystemFont(ofSize: 34)
         lbl.textColor = .white
         lbl.text = text
+        
         //displays the label
         self.addSubview(lbl)
+        
         //animates the current Uiview
         UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
             lbl.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         }) { (success) in
+            
             //once animations are completed the lbl is removed from the superview
             //gets deallocated becasuse nothing else is pointing to it
             lbl.removeFromSuperview()
@@ -43,6 +48,7 @@ extension UIView{
             })
         }
     }
+    
     //fades the view in while zooming in
     func zoomOutFadeIn(){
         if !self.transform.isIdentity{

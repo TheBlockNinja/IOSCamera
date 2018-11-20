@@ -47,31 +47,6 @@ class Image:NSObject,NSCoding,Comparable{
         super.init()
         setImageView()
     }
-    private func setImageView(){
-        DispatchQueue.main.async {
-            self.imageView = UIImageView(image: self.data)
-            self.imageView.contentMode = .scaleAspectFill
-        }
-        
-        
-    }
-
-    
-    func setInfo(_ info:String){
-        self.info = info
-    }
-    func getInfo()->String{
-        return info;
-    }
-    
-    func conatains(_ str:String)->Bool{
-        if info.lowercased().contains(str.lowercased()) || name.lowercased().contains(str.lowercased()){
-            return true
-        }
-        return true
-    }
-    
-    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(data, forKey: Image.imageSaveName)
         aCoder.encode(name, forKey: "NAME");
@@ -92,8 +67,31 @@ class Image:NSObject,NSCoding,Comparable{
         }
         
     }
-    
 
+    
+    func setInfo(_ info:String){
+        self.info = info
+    }
+    
+    func getInfo()->String{
+        return info;
+    }
+    
+    func conatains(_ str:String)->Bool{
+        if info.lowercased().contains(str.lowercased()) || name.lowercased().contains(str.lowercased()){
+            return true
+        }
+        return true
+    }
+    
+    private func setImageView(){
+        DispatchQueue.main.async {
+            self.imageView = UIImageView(image: self.data)
+            self.imageView.contentMode = .scaleAspectFill
+        }
+        
+        
+    }
     
     
     

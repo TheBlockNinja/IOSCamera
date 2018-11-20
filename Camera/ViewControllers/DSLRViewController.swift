@@ -29,6 +29,9 @@ class DSLRViewController: BaseCameraViewController {
     @IBAction func doubleTapGesture(_ sender: UITapGestureRecognizer) {
         takePicture()
     }
+    @IBAction func willTakePicture(_ sender: Any) {
+        takePicture()
+    }
     
     @IBAction func longGesture(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: liveCameraFeed)

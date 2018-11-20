@@ -64,6 +64,7 @@ class UICamera{
             
         }
     }
+    
     //focuses Camera on point where user presses,or where the camera sets the focus
     //focus point is scaled between 0.0 and 1.0
     func focusCameraOnPoint(_ point:CGPoint?=nil,distance:CGFloat=0){
