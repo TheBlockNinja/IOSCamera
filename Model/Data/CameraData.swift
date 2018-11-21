@@ -191,7 +191,7 @@ struct CameraData{
     }
     private func setupPreview(){
         previewVideoLayer.videoGravity = .resizeAspect
-        previewVideoLayer.connection?.videoOrientation = .landscapeLeft
+        previewVideoLayer.connection?.videoOrientation = UIView.getCurrentOrientation()
 
     }
 

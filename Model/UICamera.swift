@@ -95,8 +95,9 @@ class UICamera{
     //gets camera settings
     func takePicture(){
         if let output = camera.photoOutput.connection(with: .video){
-            output.videoOrientation = .landscapeLeft
+            output.videoOrientation = UIView.getCurrentOrientation()
         }
+        
        camera.photoOutput.capturePhoto(with: camera.getPhotoSettings(), delegate: UICamera.shared.photoDelegate)
     }
     

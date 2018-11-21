@@ -25,8 +25,8 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
 
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        let imagePreview = photo.previewPixelBuffer
         
+        let imagePreview = photo.previewPixelBuffer
         createImagePreview(imagePreview)
         
         DispatchQueue.global().async {

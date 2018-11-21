@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 extension UIView{
     //creates a tempory label that will appear on top of any obj that inherits the UIView
     func showLabelWith(frame:CGRect,text:String,duration:Double){
@@ -57,6 +58,26 @@ extension UIView{
                 self.alpha = 1.0
             })
         }
+    }
+    static func getCurrentOrientation()->AVCaptureVideoOrientation{
+        switch UIDevice.current.orientation
+        {
+            
+        case .unknown:
+            return AVCaptureVideoOrientation.landscapeLeft
+    //    case .portrait:
+            
+      //  case .portraitUpsideDown:
+            
+        case .landscapeLeft:
+            return AVCaptureVideoOrientation.landscapeLeft
+        case .landscapeRight:
+            return AVCaptureVideoOrientation.landscapeRight
+        default:
+            return AVCaptureVideoOrientation.landscapeLeft
+            
+        }
+        
     }
     
 }
