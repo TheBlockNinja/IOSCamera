@@ -152,7 +152,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="359"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-Fa-eZO">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DSLRv0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-Fa-eZO">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="359"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -268,7 +268,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YAo-HP-OhR">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Point and shootv0.png" translatesAutoresizingMaskIntoConstraints="NO" id="YAo-HP-OhR">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -547,4 +547,8 @@
             <point key="canvasLocation" x="-1026.8365817091455" y="111.2"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DSLRv0.png" width="2436" height="1350"/>
+        <image name="Point and shootv0.png" width="2436" height="1350"/>
+    </resources>
 </document>
