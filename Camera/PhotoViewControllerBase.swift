@@ -15,17 +15,39 @@ import UIKit
 class BaseCameraViewController:UIViewController{
     private var previewCameraFeed: UIView!
     
-    private var smallCameraFeed: UIView!
-    
     private var previewImage: UIImageView!
     
-    private var currentCamera = CameraSettings.PointAndShoot
+    private var cameraSkin: UIImageView!
     
+    private var currentCamera:CameraSettings! = CameraSettings.PointAndShoot
+    
+    var isCameraEnlarged:Bool{
+        if cameraSkin.transform.isIdentity
+        {
+            return false
+        }
+        return true
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         setFocused()
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        previewCameraFeed = nil
+        previewImage = nil
+        cameraSkin = nil
+        currentCamera = nil
+        removeNotifications()
+        
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        UICamera.shared.updateOrientation()
+    }
+    func setCameraSkin(image:UIImageView){
+        cameraSkin = image
+    }
     func addConnections(previewCameraFeed: UIView,previewImage: UIImageView,cameraSettings:CameraSettings){
         self.previewCameraFeed = previewCameraFeed
         self.previewImage = previewImage
@@ -37,26 +59,41 @@ class BaseCameraViewController:UIViewController{
     func setFocused(){
         UICamera.shared.setupCamera(cameraFeed: previewCameraFeed, photoOutput: previewImage)
         UICamera.shared.setCameraSettings(currentCamera)
+        UICamera.shared.focusCameraOnPoint()
+        UICamera.shared.updateOrientation()
     }
     
+    func enlargeCamera(){
+        if let cameraSkin = cameraSkin{
+            if isCameraEnlarged {
+                cameraSkin.zoomOutFadeIn()
+                //previewImage.frame = defaultImagePreviewLocation
+            }else{
+                cameraSkin.zoomInFade()
+               // previewImage.frame = previewCameraFeed.frame
+            }
+        }
+        
+        
+    }
     @objc func takePicture(){
         UICamera.shared.takePicture()
     }
     
-    @objc private func showPreview(){
+    @objc func showPreview(){
         if let previewImage = previewImage{
             previewImage.image = UICamera.shared.photoDelegate.CurrentPreviewImage
-            let scaletransform = CGAffineTransform(scaleX: 0.05, y: 0.05)
-            UIView.animate(withDuration: 1.0, animations: {
-                self.previewImage.transform = scaletransform
-            }) { (true) in
-                previewImage.transform = CGAffineTransform.identity
-                previewImage.image = nil;
-                
-            }
+            
+            previewImage.image = UICamera.shared.photoDelegate.CurrentPreviewImage
+            let _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(hidePicture), userInfo: nil, repeats: false)
+            
         }
     }
 
+
+    @objc private func hidePicture(){
+        previewImage.image = nil
+    }
     private func setup(){
         previewImage.contentMode = currentCamera.contentMode
         addNotifications()
@@ -65,6 +102,10 @@ class BaseCameraViewController:UIViewController{
     private func addNotifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(showPreview), name: PhotoOutputDelegate.PreviewNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(takePicture), name: CameraData.takePictureNotification, object: nil)
+    }
+    private func removeNotifications(){
+        NotificationCenter.default.removeObserver(self, name: PhotoOutputDelegate.PreviewNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: CameraData.takePictureNotification, object: nil)
     }
 
     

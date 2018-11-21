@@ -12,11 +12,11 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
     //notifcation name to update collection view when photo is done saving
     static let UpdatedCollectionView = Notification.Name(rawValue: "UpdatedCollectionView")
     //sets delete button frame inside of the collectionview cell
-    private let DeleteButtionRect = CGRect(x: 2, y: 2, width: 50, height: 20)
+    private let DeleteButtionRect = CGRect(x: 2, y: 2, width: 20, height: 20)
     //sets save button rect inside of collectionview cell
     private let SaveButtionRect = CGRect(x: 54, y: 2, width: 60, height: 20)
     //sets the scale size of the cell when selected
-    private let cellScale = CGAffineTransform(scaleX: 1.7, y: 1.7)
+    private let cellScale = CGAffineTransform(scaleX: 1.5, y: 1.5)
     //creates a delete button
     private let deleteButton:UIButton? = UIButton()
     //creates save button
@@ -35,9 +35,9 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
     //sets up delete button and adds target and adds target method
     func setupDeleteButton(){
         if let deleteButton = deleteButton{
-        deleteButton.setTitle("DEL", for: .normal)
+        deleteButton.setTitle("X", for: .normal)
         deleteButton.frame = DeleteButtionRect
-        deleteButton.layer.cornerRadius = 5
+        deleteButton.layer.cornerRadius = 10
         deleteButton.backgroundColor = .gray
         deleteButton.alpha = 0.6
         deleteButton.addTarget(self, action: #selector(deleteImage), for: .touchUpInside )
@@ -71,7 +71,7 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
                 cell.addSubview(picture.imageView)
             }
         }
-        cell.layer.cornerRadius = 5
+        cell.layer.cornerRadius = 2
         return cell;
         
     }
@@ -151,6 +151,12 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
             //if cell = identity then remove buttons if they are in the cell
             //else load buttons into cell if they are not already in the cell
             self.isButtonIn(cell: cell, Button: self.deleteButton!)
+            
+            self.saveToCameraRoll?.frame = CGRect(x: (cell.frame.origin.x + (cell.frame.width/2)) - (self.SaveButtionRect.width*1.3),
+                                                  y: 2,
+                                                  width: (self.SaveButtionRect.width),
+                                                  height: (self.SaveButtionRect.height))
+            
             self.isButtonIn(cell: cell, Button: self.saveToCameraRoll!)
         }
     }
@@ -175,10 +181,13 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
     //is called when the user presses the delete button
     @objc func deleteImage(){
         if selectedCell > -1{
-            justDeleted = true
+            saveToCameraRoll?.removeFromSuperview()
+            deleteButton?.removeFromSuperview()
             UICamera.shared.pictures.deleteImage(at: selectedCell)
             selectedCell = -1
             NotificationCenter.default.post(name: PhotoCollectionViewDelegate.UpdatedCollectionView, object: nil)
+             justDeleted = true
+ 
         }
     }
     //is called when the user presses the save button

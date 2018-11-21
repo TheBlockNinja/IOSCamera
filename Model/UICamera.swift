@@ -38,6 +38,10 @@ class UICamera{
         }
     }
     
+    //updates orientationg
+    func updateOrientation(){
+        camera.updateOrientation()
+    }
     //sets the camera settings
     func setCameraSettings(_ cameraSettings:CameraSettings){
         self.cameraSettings = cameraSettings
@@ -115,7 +119,6 @@ class UICamera{
         }else if focalDistance > 1{
             focalDistance = 1
         }
-        print(focalDistance)
         focusCameraOnPoint(distance: focalDistance)
     }
     

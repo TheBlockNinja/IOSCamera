@@ -13,21 +13,32 @@ class DSLRViewController: BaseCameraViewController {
     @IBOutlet weak var liveCameraFeed: UIView!
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var cameraSkinImageView: UIImageView!
+    @IBOutlet weak var cameraLensBtn: UIButton!
     
     @IBOutlet weak var FlashBTN: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        addConnections(previewCameraFeed: liveCameraFeed, previewImage: imagePreview, cameraSettings: .DSLR)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        addConnections(previewCameraFeed: liveCameraFeed, previewImage: imagePreview, cameraSettings: .DSLR)
+        setCameraSkin(image: cameraSkinImageView)
         super.viewWillAppear(animated)
         FlashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
     }
+    @IBAction func clickedOnCameraLens(_ sender: Any) {
+        enlargeCamera()
+        cameraLensBtn.isHidden = true
+    }
     
     @IBAction func doubleTapGesture(_ sender: UITapGestureRecognizer) {
-        takePicture()
+        if cameraLensBtn.isHidden == true{
+            enlargeCamera()
+            cameraLensBtn.isHidden = false
+        }
     }
     @IBAction func willTakePicture(_ sender: Any) {
         takePicture()
@@ -46,6 +57,7 @@ class DSLRViewController: BaseCameraViewController {
         UICamera.shared.switchFlash()
         FlashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
     }
+
     
 
 }

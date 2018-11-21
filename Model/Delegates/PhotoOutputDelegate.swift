@@ -39,10 +39,14 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
     private func createImagePreview(_ imagePreview: CVPixelBuffer?) {
         if let imgP = imagePreview{
             let tempImage = CIImage(cvPixelBuffer:imgP)
-            let newImage = tempImage.transformed(by: (CGAffineTransform(rotationAngle: rotatePreviewImage)))
-            let ciContext = CIContext()
-            let cgImage = ciContext.createCGImage(newImage, from: newImage.extent)
-            CurrentPreviewImage = UIImage(cgImage: cgImage!)
+            if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight{
+                let newImage = tempImage.transformed(by: (CGAffineTransform(rotationAngle: rotatePreviewImage)))
+                let ciContext = CIContext()
+                let cgImage = ciContext.createCGImage(newImage, from: newImage.extent)
+                CurrentPreviewImage = UIImage(cgImage: cgImage!)
+            }else{
+               CurrentPreviewImage = UIImage(ciImage: tempImage)
+            }
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }
     }

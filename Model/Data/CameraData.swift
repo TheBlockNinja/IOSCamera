@@ -37,7 +37,10 @@ struct CameraData{
     func setPreviewFrame(_ rect:CGRect){
         previewVideoLayer.frame = rect
     }
-    
+    func updateOrientation()
+    {
+         previewVideoLayer.connection?.videoOrientation = UIView.getCurrentOrientation()
+    }
     func getPhotoSettings()->AVCapturePhotoSettings{
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         settings.flashMode = flashMode
@@ -190,7 +193,7 @@ struct CameraData{
         return nil
     }
     private func setupPreview(){
-        previewVideoLayer.videoGravity = .resizeAspect
+        previewVideoLayer.videoGravity = .resizeAspectFill
         previewVideoLayer.connection?.videoOrientation = UIView.getCurrentOrientation()
 
     }

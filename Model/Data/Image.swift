@@ -22,7 +22,7 @@ class Image:NSObject,NSCoding,Comparable{
     
     var name:String = ""
     
-    var data:UIImage
+    var data:UIImage!
     
     var imageView:UIImageView!
     
@@ -91,6 +91,11 @@ class Image:NSObject,NSCoding,Comparable{
         }
         
         
+    }
+    func delete(){
+        data = nil
+        imageView.removeFromSuperview()
+        imageView = nil
     }
     
     

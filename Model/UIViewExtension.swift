@@ -63,21 +63,25 @@ extension UIView{
         switch UIDevice.current.orientation
         {
             
-        case .unknown:
-            return AVCaptureVideoOrientation.landscapeLeft
     //    case .portrait:
             
       //  case .portraitUpsideDown:
             
         case .landscapeLeft:
-            return AVCaptureVideoOrientation.landscapeLeft
-        case .landscapeRight:
             return AVCaptureVideoOrientation.landscapeRight
+        case .landscapeRight:
+            return AVCaptureVideoOrientation.landscapeLeft
         default:
             return AVCaptureVideoOrientation.landscapeLeft
             
         }
         
+    }
+    func addShadow(color :UIColor,radius:CGFloat){
+        layer.shadowColor = color.cgColor
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = radius
+        layer.shadowOpacity = 1
     }
     
 }

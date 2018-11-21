@@ -20,11 +20,12 @@ class OldSchoolViewController: BaseCameraViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addConnections(previewCameraFeed: cameraPreview, previewImage: PreviewImage, cameraSettings: CameraSettings.OldSchool)
-        focusLBL.text = UICamera.shared.getFocalDistance()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        addConnections(previewCameraFeed: cameraPreview, previewImage: PreviewImage, cameraSettings: CameraSettings.OldSchool)
+        focusLBL.text = UICamera.shared.getFocalDistance()
         super.viewWillAppear(animated)
         flashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
     }

@@ -40,7 +40,7 @@ struct CameraSettings{
     var focusPoint:CGPoint? = nil
     
     
-    var contentMode = UIView.ContentMode.scaleToFill
+    var contentMode = UIView.ContentMode.scaleAspectFill
     
     
     init(name:String,flash:[AVCaptureDevice.FlashMode],

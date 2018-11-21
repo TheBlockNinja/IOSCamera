@@ -89,6 +89,8 @@ struct Pictures{
     
     mutating func deleteImage(at index:Int){
         if let _ = getImage(at: index){
+            let image = images[index]
+            image.delete()
             images.remove(at: index);
             savePictures()
         }

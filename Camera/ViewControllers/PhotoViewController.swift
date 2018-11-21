@@ -51,7 +51,6 @@ class PhotoViewController: UIViewController {
     }
     
     @objc func savedImage(){
-        print("SAVED")
         deseletItems()
         
     }
