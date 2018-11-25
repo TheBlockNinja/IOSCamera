@@ -30,6 +30,9 @@
                             <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Old schoolv0.png" translatesAutoresizingMaskIntoConstraints="NO" id="2If-3Y-xtj">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="r9Z-Di-RPr" appends="YES" id="LS3-hd-KSx"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-IK-nL4">
                                 <rect key="frame" x="10" y="10" width="97" height="30"/>
@@ -43,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McW-fu-qMT">
-                                <rect key="frame" x="562" y="20" width="85" height="30"/>
+                                <rect key="frame" x="10" y="56" width="85" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Z3d-zS-DHG"/>
@@ -56,59 +59,45 @@
                                     <action selector="switchFlash:" destination="hOw-1V-wrE" eventType="touchUpInside" id="J7e-x4-XO8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m52-tr-Sel">
-                                <rect key="frame" x="562" y="65" width="85" height="30"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                                <state key="normal" title="+"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G89-wx-Z7j">
+                                <rect key="frame" x="244" y="96" width="84" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="f2v-sO-64r"/>
+                                </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="qRc-Om-Ges" appends="YES" id="P1b-CS-1hx"/>
+                                    <action selector="zoomIn:" destination="hOw-1V-wrE" eventType="touchUpInside" id="U1O-tR-e2G"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZt-sQ-eqn">
-                                <rect key="frame" x="562" y="109" width="85" height="30"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                                <state key="normal" title="-"/>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="x3y-10-xUB">
+                                <rect key="frame" x="531" y="10" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="thumbTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="uCZ-PH-jFc" appends="YES" id="rQU-fS-utK"/>
+                                    <action selector="focusSliderChanged:" destination="hOw-1V-wrE" eventType="valueChanged" id="Dcb-qx-YaQ"/>
                                 </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7j8-u5-JUd">
-                                <rect key="frame" x="562" y="161" width="85" height="21"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="top" secondItem="PjN-4P-Gut" secondAttribute="top" id="0vQ-5f-HkH"/>
-                            <constraint firstItem="eZt-sQ-eqn" firstAttribute="top" secondItem="m52-tr-Sel" secondAttribute="bottom" constant="14" id="1WQ-KJ-SBf"/>
-                            <constraint firstItem="7j8-u5-JUd" firstAttribute="trailing" secondItem="eZt-sQ-eqn" secondAttribute="trailing" id="Cup-aQ-sT0"/>
-                            <constraint firstItem="m52-tr-Sel" firstAttribute="top" secondItem="McW-fu-qMT" secondAttribute="bottom" constant="15" id="EaH-zD-7Ty"/>
                             <constraint firstAttribute="trailing" secondItem="2If-3Y-xtj" secondAttribute="trailing" id="Ids-aF-Fz9"/>
                             <constraint firstItem="2If-3Y-xtj" firstAttribute="bottom" secondItem="PjN-4P-Gut" secondAttribute="bottom" id="InD-b1-Pco"/>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="leading" secondItem="OA4-1e-qSv" secondAttribute="leading" id="Nsu-Aj-CfW"/>
-                            <constraint firstItem="m52-tr-Sel" firstAttribute="leading" secondItem="PjN-4P-Gut" secondAttribute="leading" constant="562" id="PMq-4s-upr"/>
-                            <constraint firstItem="McW-fu-qMT" firstAttribute="trailing" secondItem="m52-tr-Sel" secondAttribute="trailing" id="Pfs-Xa-1Qh"/>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="top" secondItem="OA4-1e-qSv" secondAttribute="top" id="QOg-RV-BEV"/>
-                            <constraint firstItem="7j8-u5-JUd" firstAttribute="centerY" secondItem="OA4-1e-qSv" secondAttribute="centerY" id="Rjc-h2-6ZY"/>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="trailing" secondItem="2If-3Y-xtj" secondAttribute="trailing" id="VTm-7T-fXP"/>
-                            <constraint firstItem="m52-tr-Sel" firstAttribute="leading" secondItem="eZt-sQ-eqn" secondAttribute="leading" id="VvN-Av-TJp"/>
-                            <constraint firstItem="7j8-u5-JUd" firstAttribute="leading" secondItem="eZt-sQ-eqn" secondAttribute="leading" id="XyM-Py-Ed3"/>
+                            <constraint firstItem="PjN-4P-Gut" firstAttribute="bottom" secondItem="G89-wx-Z7j" secondAttribute="bottom" constant="217" id="Y9r-92-eJ7"/>
                             <constraint firstItem="2If-3Y-xtj" firstAttribute="bottom" secondItem="3Wg-I4-Gsg" secondAttribute="bottom" id="bA0-1R-9A7"/>
                             <constraint firstItem="OA4-1e-qSv" firstAttribute="trailing" secondItem="3Wg-I4-Gsg" secondAttribute="trailing" id="bTM-xb-0zY"/>
-                            <constraint firstItem="m52-tr-Sel" firstAttribute="trailing" secondItem="eZt-sQ-eqn" secondAttribute="trailing" id="cUu-6o-SDL"/>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="leading" secondItem="2If-3Y-xtj" secondAttribute="leading" id="iaG-Ll-dQg"/>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="bottom" secondItem="OA4-1e-qSv" secondAttribute="bottom" id="jj4-t2-Fsa"/>
                             <constraint firstItem="0dh-IK-nL4" firstAttribute="leading" secondItem="PjN-4P-Gut" secondAttribute="leading" constant="10" id="pT1-08-jtN"/>
-                            <constraint firstItem="McW-fu-qMT" firstAttribute="top" secondItem="fSN-dP-rII" secondAttribute="top" constant="20" symbolic="YES" id="uU7-xP-asC"/>
+                            <constraint firstItem="G89-wx-Z7j" firstAttribute="leading" secondItem="PjN-4P-Gut" secondAttribute="leading" constant="244" id="qsF-rA-RU7"/>
+                            <constraint firstItem="McW-fu-qMT" firstAttribute="top" secondItem="fSN-dP-rII" secondAttribute="top" constant="56" id="uU7-xP-asC"/>
                             <constraint firstItem="OA4-1e-qSv" firstAttribute="top" secondItem="2If-3Y-xtj" secondAttribute="top" id="uhD-7t-8ZX"/>
                             <constraint firstItem="3Wg-I4-Gsg" firstAttribute="leading" secondItem="fSN-dP-rII" secondAttribute="leading" id="wux-RU-tIb"/>
                             <constraint firstItem="0dh-IK-nL4" firstAttribute="top" secondItem="PjN-4P-Gut" secondAttribute="top" constant="10" id="xpZ-Px-iwN"/>
-                            <constraint firstItem="McW-fu-qMT" firstAttribute="trailing" secondItem="fSN-dP-rII" secondAttribute="trailingMargin" id="zun-2P-atH"/>
+                            <constraint firstItem="McW-fu-qMT" firstAttribute="trailing" secondItem="fSN-dP-rII" secondAttribute="trailingMargin" constant="-552" id="zun-2P-atH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PjN-4P-Gut"/>
                     </view>
@@ -118,7 +107,8 @@
                         <outlet property="cameraPreview" destination="3Wg-I4-Gsg" id="ZsC-Iq-ixP"/>
                         <outlet property="cameraSkinImageView" destination="2If-3Y-xtj" id="zg2-H8-0V1"/>
                         <outlet property="flashBTN" destination="McW-fu-qMT" id="vEn-n5-n46"/>
-                        <outlet property="focusLBL" destination="7j8-u5-JUd" id="HeO-eA-UYr"/>
+                        <outlet property="focusSlider" destination="x3y-10-xUB" id="CUK-UZ-hDP"/>
+                        <outlet property="zoomBTN" destination="G89-wx-Z7j" id="M4p-TC-bwb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="exz-PX-rza" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,6 +122,11 @@
                         <action selector="DecreaseFocalDistance:" destination="hOw-1V-wrE" id="rcz-u8-0RJ"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="r9Z-Di-RPr">
+                    <connections>
+                        <action selector="zoomOut:" destination="hOw-1V-wrE" id="A1P-cy-i4A"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3154.2728635682161" y="116"/>
         </scene>
@@ -165,8 +160,8 @@
                                     <outletCollection property="gestureRecognizers" destination="Kdo-cB-h3L" appends="YES" id="GC8-lM-mNg"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X5-xl-dW7">
-                                <rect key="frame" x="10" y="10" width="97" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X5-xl-dW7">
+                                <rect key="frame" x="20" y="20" width="97" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="zrM-Rl-Ra6"/>
@@ -195,6 +190,22 @@
                                     <action selector="clickedOnCameraLens:" destination="Ues-gV-4ke" eventType="touchUpInside" id="7di-f8-uDH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXA-42-vmW">
+                                <rect key="frame" x="431" y="60" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Mode"/>
+                                <connections>
+                                    <action selector="changeFocusMode:" destination="Ues-gV-4ke" eventType="touchUpInside" id="MbO-rX-kRc"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-Cu-hcb">
+                                <rect key="frame" x="529" y="113" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeFocusSlider:" destination="Ues-gV-4ke" eventType="valueChanged" id="iIS-uV-upj"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -227,6 +238,8 @@
                         <outlet property="FlashBTN" destination="93E-Ll-VSj" id="Ont-6m-vwK"/>
                         <outlet property="cameraLensBtn" destination="Owz-vd-HUq" id="l6T-cl-y10"/>
                         <outlet property="cameraSkinImageView" destination="Vjf-Fa-eZO" id="AVa-PH-XHe"/>
+                        <outlet property="focusModeBTN" destination="DXA-42-vmW" id="b1W-Xv-7Uf"/>
+                        <outlet property="focusSlider" destination="gNc-Cu-hcb" id="KMR-aW-zoi"/>
                         <outlet property="imagePreview" destination="u3l-M3-5Bq" id="2tQ-6b-Gaf"/>
                         <outlet property="liveCameraFeed" destination="oyq-8g-LyD" id="2z9-qK-boM"/>
                     </connections>

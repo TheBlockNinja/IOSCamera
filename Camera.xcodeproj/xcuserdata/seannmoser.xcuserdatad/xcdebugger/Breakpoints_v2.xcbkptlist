@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/ViewControllers/PointAndShootViewController.swift"
-            timestampString = "564532812.455711"
+            timestampString = "564868243.887534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -250,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/ViewControllers/PhotoViewController.swift"
-            timestampString = "564532812.455889"
+            timestampString = "564866025.0847369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Model/Delegates/PhotoCollectionViewDelegate.swift"
-            timestampString = "564532812.4559439"
+            timestampString = "564869626.782107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Model/UIViewExtension.swift"
-            timestampString = "564532812.455999"
+            timestampString = "564869626.782449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/ViewControllers/DSLRViewController.swift"
-            timestampString = "564532812.456043"
+            timestampString = "564869626.782501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "doubleTapGesture(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/ViewControllers/DSLRViewController.swift"
-            timestampString = "564532812.456091"
+            timestampString = "564869626.78255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "clickedOnCameraLens(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,13 +330,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/PhotoViewControllerBase.swift"
-            timestampString = "564532812.4561369"
+            timestampString = "564867244.307278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "enlargeCamera()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -346,13 +346,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/PhotoViewControllerBase.swift"
-            timestampString = "564532812.4564821"
+            timestampString = "564867244.307326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "enlargeCamera()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -362,13 +362,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/PhotoViewControllerBase.swift"
-            timestampString = "564532812.456725"
+            timestampString = "564867244.307366"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "enlargeCamera()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Camera/ViewControllers/OldSchoolViewController.swift"
+            timestampString = "564869626.782644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "zoomOut(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model/UICamera.swift"
+            timestampString = "564869626.782699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "setFocalDistance(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model/Data/Pictures.swift"
+            timestampString = "564869626.782746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "loadPictures()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model/Data/Pictures.swift"
+            timestampString = "564869626.782788"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "loadPictures()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

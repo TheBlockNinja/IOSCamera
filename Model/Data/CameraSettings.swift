@@ -12,18 +12,18 @@ import AVFoundation
 struct CameraSettings{
     static let OldSchool = CameraSettings(name: "Old School",
                                           flash: [.off,.on],
-                                          focus: .locked,
+                                          focus: [.locked],
                                           CameraSkin: nil,
                                           defaultPos:.back,
                                           exposure:.continuousAutoExposure,
                                           focusPoint:nil)
     static let DSLR = CameraSettings(name: "DSLR",
                                      flash: [.off,.auto,.on],
-                                     focus: .autoFocus,
+                                     focus: [.autoFocus,.locked,.continuousAutoFocus],
                                      CameraSkin: nil)
     static let PointAndShoot = CameraSettings(name: "Point and Shoot",
                                               flash: [.off,.on],
-                                              focus: .continuousAutoFocus,
+                                              focus: [.continuousAutoFocus],
                                               CameraSkin: nil,
                                               defaultPos:.back,
                                               exposure:.autoExpose,
@@ -33,7 +33,8 @@ struct CameraSettings{
     let name:String
     var flash:[AVCaptureDevice.FlashMode]
     var selectedFlash = 0
-    var focus:AVCaptureDevice.FocusMode
+    var focus:[AVCaptureDevice.FocusMode]
+    var selectedFocus = 0
     var exposure:AVCaptureDevice.ExposureMode
     let CameraSkin:UIImage?
     var defaultPos:AVCaptureDevice.Position?
@@ -44,7 +45,7 @@ struct CameraSettings{
     
     
     init(name:String,flash:[AVCaptureDevice.FlashMode],
-         focus:AVCaptureDevice.FocusMode,
+         focus:[AVCaptureDevice.FocusMode],
          CameraSkin:UIImage?,
          defaultPos:AVCaptureDevice.Position,
          exposure:AVCaptureDevice.ExposureMode,
@@ -58,7 +59,7 @@ struct CameraSettings{
         self.focusPoint = focusPoint
     }
     
-    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:AVCaptureDevice.FocusMode,CameraSkin:UIImage?,defaultPos:AVCaptureDevice.Position) {
+    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?,defaultPos:AVCaptureDevice.Position) {
         self.name = name
         self.flash = flash
         self.focus = focus
@@ -68,7 +69,7 @@ struct CameraSettings{
     }
     
     
-    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:AVCaptureDevice.FocusMode,CameraSkin:UIImage?) {
+    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?) {
         self.name = name
         self.flash = flash
         self.focus = focus
@@ -87,6 +88,15 @@ struct CameraSettings{
         let currentFlash = flash[selectedFlash]
         return currentFlash
         
+    }
+    func getFocusMode()->AVCaptureDevice.FocusMode{
+        return focus[selectedFocus]
+    }
+    mutating func switchFocusMode(){
+        selectedFocus = selectedFocus + 1
+        if selectedFocus >= focus.count{
+            selectedFocus = 0
+        }
     }
     
     

@@ -13,7 +13,7 @@ class Image:NSObject,NSCoding,Comparable{
     static let imageSaveName = "IMGSAVE"
     static let nameSaveName = "NAMESAVE"
     static let InfoSaveName = "InfoSave"
-    static let CameraTypeSaveName = "CameraTypeSaveName"
+  //  static let CameraTypeSaveName = "CameraTypeSaveName"
     
     static func < (lhs: Image, rhs: Image) -> Bool {
         return lhs.name < rhs.name;
@@ -26,7 +26,7 @@ class Image:NSObject,NSCoding,Comparable{
     
     var imageView:UIImageView!
     
-    var cameraName:String = ""
+ //   var cameraName:String = ""
     
     private var info:String = "" // desciption of the photo
     
@@ -53,13 +53,13 @@ class Image:NSObject,NSCoding,Comparable{
         aCoder.encode(data, forKey: Image.imageSaveName)
         aCoder.encode(name, forKey: "NAME");
         aCoder.encode(info, forKey: Image.InfoSaveName)
-        aCoder.encode(cameraName, forKey: Image.CameraTypeSaveName)
+  //      aCoder.encode(cameraName, forKey: Image.CameraTypeSaveName)
     }
     required convenience init?(coder aDecoder: NSCoder) {
         let img = aDecoder.decodeObject(forKey: Image.imageSaveName) as? UIImage
         let nam = aDecoder.decodeObject(forKey: Image.nameSaveName)
         let inf = aDecoder.decodeObject(forKey: Image.InfoSaveName)
-        let cameraName = aDecoder.decodeObject(forKey: Image.CameraTypeSaveName) as? String
+     //   let cameraName = aDecoder.decodeObject(forKey: Image.CameraTypeSaveName) as? String
         if let img = img,let name = nam as? String{
             self.init(name: name, image: img);
         }else{
@@ -68,14 +68,10 @@ class Image:NSObject,NSCoding,Comparable{
         if let inf = inf as? String{
             self.setInfo(inf)
         }
-        if let cameraName = cameraName{
-            self.setCameraType(cameraName)
-        }
+
         
     }
-    func setCameraType(_ str:String){
-        cameraName = str;
-    }
+
     
     func setInfo(_ info:String){
         self.info = info

@@ -122,17 +122,18 @@ struct Pictures{
         
         let filemgr = FileManager.default
         if !picturesAreLoaded{
-        if filemgr.fileExists(atPath: filePath(fileName: Pictures.archiveName)){
-            if let images = NSKeyedUnarchiver.unarchiveObject(withFile:filePath(fileName: Pictures.archiveName)) as? [Image]{
-                picturesAreLoaded = true
-                for i in images{
-                    addImage(i);
+            if filemgr.fileExists(atPath: filePath(fileName: Pictures.archiveName)){
+                if let images = NSKeyedUnarchiver.unarchiveObject(withFile:filePath(fileName: Pictures.archiveName)) as? [Image]{
+                    picturesAreLoaded = true
+                    for i in images{
+                        addImage(i);
+                    }
                     NotificationCenter.default.post(name: Pictures.UpdateLoadingNotification, object: nil)
-                }
                 
+                }
             }
         }
-        }
+        
     }
     
     private func filePath(fileName:String) -> String {

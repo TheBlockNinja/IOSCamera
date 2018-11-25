@@ -20,8 +20,6 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
     //flip image so it previews properly
     private let rotatePreviewImage:CGFloat = ((180.0 * .pi) / 180)
     
-    
-    private var currentCameraName:String = ""
 
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -50,9 +48,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }
     }
-    func setCurrentCameraName(_ str:String){
-        currentCameraName = str
-    }
+
     func saveImage(photo:AVCapturePhoto,_ output: AVCapturePhotoOutput){
         
         let imageData = photo.fileDataRepresentation()
@@ -61,7 +57,6 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
         
             let compressed = image.jpegData(compressionQuality: 0.5)
             let newImg = Image(image: UIImage(data: compressed!)!)
-            newImg.setCameraType(currentCameraName)
             UICamera.shared.pictures.addImage(newImg)
             UICamera.shared.pictures.savePictures()
            
