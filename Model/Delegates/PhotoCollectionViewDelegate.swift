@@ -63,7 +63,7 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //createss a cell from the cell in the story board with name Cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath)
-        
+    
         //checks if indexPath is valid
         if UICamera.shared.pictures.count > indexPath.item{
             if let picture = UICamera.shared.pictures.getImage(at: indexPath.item){
@@ -74,6 +74,9 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
         cell.layer.cornerRadius = 2
         return cell;
         
+    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

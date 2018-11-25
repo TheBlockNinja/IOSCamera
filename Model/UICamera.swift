@@ -46,6 +46,7 @@ class UICamera{
     func setCameraSettings(_ cameraSettings:CameraSettings){
         self.cameraSettings = cameraSettings
         applyCameraSettings()
+        photoDelegate.setCurrentCameraName(cameraSettings.name);
         camera.setPosition(self.cameraSettings.defaultPos!)
     }
     
