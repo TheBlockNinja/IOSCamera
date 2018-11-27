@@ -116,7 +116,7 @@ struct Cameras{
 
 struct cameraSettings:Codable{
     private var imageCompression:Double = 0.5
-    var filterEffect:Double = 1
+    var filterEffect:Double = 0.8
     var filter:[String] = []
     private var imageQuality:Int = 2
     
