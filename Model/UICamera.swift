@@ -31,13 +31,14 @@ class UICamera{
     
     
     private var CurrentCamera = ""
+    
+    
     init() {
         //adds a new thread that loads the pictures
         //intesive process
-       // DispatchQueue.global().async {
-        self.pictures.loadPictures()
-           // Thread.()
-      //  }
+        Threads.PictureThread.async {
+            self.pictures.loadPictures()
+        }
         camera.applyLiveFilterToCameraFeed()
     }
     
@@ -71,8 +72,8 @@ class UICamera{
     func getFocusMode()->String{
         switch cameraSettings.getFocusMode() {
         case .locked :return "Manual"
-        case .autoFocus: return "Tap(AF)"
-        case .continuousAutoFocus: return "Cont.(AF)"
+        case .autoFocus: return "Tap To Focus"
+        case .continuousAutoFocus: return "Cont.Auto Focus"
             
         }
     }
@@ -123,7 +124,6 @@ class UICamera{
         if let output = camera.photoOutput.connection(with: .video){
             output.videoOrientation = UIView.getCurrentOrientation()
         }
-        
        camera.photoOutput.capturePhoto(with: camera.getPhotoSettings(), delegate: UICamera.shared.photoDelegate)
     }
     

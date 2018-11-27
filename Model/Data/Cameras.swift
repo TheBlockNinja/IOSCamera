@@ -15,6 +15,7 @@ struct Cameras{
                               focus: [.autoFocus],
                               CameraSkin: nil,
                               filterName:[ImageManipulation.NON])
+    
     static let OldSchool = Cameras(name: "Old School",
                                           flash: [.off,.on],
                                           focus: [.locked],
@@ -35,7 +36,7 @@ struct Cameras{
                                               defaultPos:.back,
                                               exposure:.autoExpose,
                                               focusPoint:CGPoint(x:0.5,y:0.5),
-                                              filterName:[ImageManipulation.NON])
+                                              filterName:[ImageManipulation.GRAYSCALE])
     
     
     
@@ -67,16 +68,6 @@ struct Cameras{
         self.focusPoint = focusPoint
         settings.filter = filterName
     }
-    /*
-    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?,defaultPos:AVCaptureDevice.Position) {
-        self.name = name
-        self.flash = flash
-        self.focus = focus
-        self.CameraSkin = CameraSkin
-        self.defaultPos = defaultPos
-        exposure = .autoExpose
-    }
-    */
     
     init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?,filterName:[String]) {
         self.name = name
@@ -86,12 +77,6 @@ struct Cameras{
         self.defaultPos = .back
         exposure = .autoExpose
         settings.filter = filterName
-    }
-    private mutating func load(){
-        
-    }
-    mutating func save(){
-        
     }
     private mutating func incrementFlash(){
         selectedFlash = selectedFlash + 1
@@ -120,7 +105,7 @@ struct Cameras{
 }
 
 struct cameraSettings:Codable{
-    private var imageCompression:Double = 0.5
+    private var imageCompression:Double = 0.8
     var filterEffect:Double = 0.8
     var filter:[String] = []
     private var imageQuality:Int = 2

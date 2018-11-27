@@ -13,7 +13,6 @@ class Image:NSObject,NSCoding,Comparable{
     static let imageSaveName = "IMGSAVE"
     static let nameSaveName = "NAMESAVE"
     static let InfoSaveName = "InfoSave"
-  //  static let CameraTypeSaveName = "CameraTypeSaveName"
     
     static func < (lhs: Image, rhs: Image) -> Bool {
         return lhs.name < rhs.name;
@@ -25,8 +24,6 @@ class Image:NSObject,NSCoding,Comparable{
     var data:UIImage!
     
     var imageView:UIImageView!
-    
- //   var cameraName:String = ""
     
     private var info:String = "" // desciption of the photo
     
@@ -42,6 +39,7 @@ class Image:NSObject,NSCoding,Comparable{
        super.init()
         setImageView()
     }
+    
     init(name:String,image:UIImage){
         
         self.name = name;
@@ -49,17 +47,11 @@ class Image:NSObject,NSCoding,Comparable{
         super.init()
         setImageView()
     }
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(data, forKey: Image.imageSaveName)
-        aCoder.encode(name, forKey: "NAME");
-        aCoder.encode(info, forKey: Image.InfoSaveName)
-  //      aCoder.encode(cameraName, forKey: Image.CameraTypeSaveName)
-    }
+
     required convenience init?(coder aDecoder: NSCoder) {
         let img = aDecoder.decodeObject(forKey: Image.imageSaveName) as? UIImage
         let nam = aDecoder.decodeObject(forKey: Image.nameSaveName)
         let inf = aDecoder.decodeObject(forKey: Image.InfoSaveName)
-     //   let cameraName = aDecoder.decodeObject(forKey: Image.CameraTypeSaveName) as? String
         if let img = img,let name = nam as? String{
             self.init(name: name, image: img);
         }else{
@@ -70,6 +62,12 @@ class Image:NSObject,NSCoding,Comparable{
         }
 
         
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(data, forKey: Image.imageSaveName)
+        aCoder.encode(name, forKey: "NAME");
+        aCoder.encode(info, forKey: Image.InfoSaveName)
     }
 
     
@@ -88,6 +86,12 @@ class Image:NSObject,NSCoding,Comparable{
         return true
     }
     
+    func delete(){
+        data = nil
+        imageView.removeFromSuperview()
+        imageView = nil
+    }
+    
     private func setImageView(){
         DispatchQueue.main.async {
             self.imageView = UIImageView(image: self.data)
@@ -96,11 +100,7 @@ class Image:NSObject,NSCoding,Comparable{
         
         
     }
-    func delete(){
-        data = nil
-        imageView.removeFromSuperview()
-        imageView = nil
-    }
+
     
     
     

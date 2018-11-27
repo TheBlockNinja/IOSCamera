@@ -24,7 +24,13 @@ class BaseCameraViewController:UIViewController{
     private var currentCamera:Cameras! = Cameras.PointAndShoot
     
     private var volumeView:MPVolumeView?
+    
     private var audioSession:AVAudioPlayer!
+    
+    private var filterFeed:UIImageView!
+    
+    private var previewTimer:Timer?
+    
     var isCameraEnlarged:Bool{
         if cameraSkin.transform.isIdentity
         {
@@ -50,6 +56,7 @@ class BaseCameraViewController:UIViewController{
             volumeView?.isHidden = false
             self.view.addSubview(volumeView!)
         }
+        UICamera.shared.updateOrientation()
     }
 
     
@@ -63,7 +70,9 @@ class BaseCameraViewController:UIViewController{
         audioSession = nil
         volumeView?.removeFromSuperview()
         volumeView = nil
-        //UICamera.shared.setCameraSettings(Cameras.non)
+        if let previewTimer = previewTimer{
+            previewTimer.invalidate()
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -71,6 +80,10 @@ class BaseCameraViewController:UIViewController{
     }
     func setCameraSkin(image:UIImageView){
         cameraSkin = image
+    }
+    func setFilterFeed(_ image:UIImageView){
+        filterFeed = image
+        startTimer()
     }
     func addConnections(previewCameraFeed: UIView,previewImage: UIImageView,cameraSettings:Cameras){
         self.previewCameraFeed = previewCameraFeed
@@ -92,14 +105,21 @@ class BaseCameraViewController:UIViewController{
         if let cameraSkin = cameraSkin{
             if isCameraEnlarged {
                 cameraSkin.zoomOutFadeIn()
-                //previewImage.frame = defaultImagePreviewLocation
             }else{
                 cameraSkin.zoomInFade()
-               // previewImage.frame = previewCameraFeed.frame
             }
         }
         
         
+    }
+    private func startTimer(){
+        if previewTimer != nil{
+            previewTimer?.invalidate()
+        }
+        previewTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(preview), userInfo: nil, repeats: true)
+    }
+    @objc func preview(){
+        filterFeed.image = videoFeed.Feed
     }
     @objc func takePicture(){
         UICamera.shared.takePicture()
@@ -111,7 +131,6 @@ class BaseCameraViewController:UIViewController{
             
             previewImage.image = UICamera.shared.photoDelegate.CurrentPreviewImage
             let _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(hidePicture), userInfo: nil, repeats: false)
-            
         }
     }
 
@@ -121,6 +140,7 @@ class BaseCameraViewController:UIViewController{
             previewImage.image = nil
         }
     }
+    
     private func setup(){
         previewImage.contentMode = currentCamera.contentMode
         addNotifications()
@@ -129,7 +149,7 @@ class BaseCameraViewController:UIViewController{
     private func addNotifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(showPreview), name: PhotoOutputDelegate.PreviewNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(takePicture), name: CameraData.takePictureNotification, object: nil)
-        addVolumeControl()
+       NotificationCenter.default.addObserver(self, selector: #selector(takePicture), name: BaseCameraViewController.VolumeNotification, object: nil)
     }
     private func removeNotifications(){
         NotificationCenter.default.removeObserver(self, name: PhotoOutputDelegate.PreviewNotification, object: nil)
@@ -138,15 +158,7 @@ class BaseCameraViewController:UIViewController{
         volumeView?.removeFromSuperview()
     
     }
-    private func addVolumeControl(){
-     //   AVAudioSession.sharedInstance().
 
-        //volumeView?.showsVolumeSlider = false
-      //  view.sendSubviewToBack(volumeView!)
-        NotificationCenter.default.addObserver(self, selector: #selector(takePicture), name: BaseCameraViewController.VolumeNotification, object: nil)
-        //NotificationCenter.default.post(name: BaseCameraViewController.VolumeNotification, object: nil)
-        
-    }
 
     
     

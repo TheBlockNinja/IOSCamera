@@ -22,6 +22,7 @@
 		E9430FEC21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9430FEB21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift */; };
 		E960389E219B840600B64139 /* PhotoViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960389D219B840600B64139 /* PhotoViewControllerBase.swift */; };
 		E96A10E62193AEFD00DCB3BD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */; };
+		E975886221ADEF31000CA672 /* Threads.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975886121ADEF31000CA672 /* Threads.swift */; };
 		E9995DBF219507F200109FDF /* Cameras.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DBE219507F200109FDF /* Cameras.swift */; };
 		E9995DC12196400100109FDF /* PhotoOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */; };
 		E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BD32202190F07800CE8319 /* ImageManipulation.swift */; };
@@ -49,6 +50,7 @@
 		E9430FEB21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		E960389D219B840600B64139 /* PhotoViewControllerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewControllerBase.swift; sourceTree = "<group>"; };
 		E96A10E52193AEFD00DCB3BD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		E975886121ADEF31000CA672 /* Threads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Threads.swift; sourceTree = "<group>"; };
 		E9995DBE219507F200109FDF /* Cameras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameras.swift; sourceTree = "<group>"; };
 		E9995DC02196400100109FDF /* PhotoOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOutputDelegate.swift; sourceTree = "<group>"; };
 		E9BD32202190F07800CE8319 /* ImageManipulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManipulation.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				E9430FDF219CEC2700D40221 /* Delegates */,
 				E9BD32202190F07800CE8319 /* ImageManipulation.swift */,
 				E9430FE721A0A0C300D40221 /* UserData.swift */,
+				E975886121ADEF31000CA672 /* Threads.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				E9BD32232190F77C00CE8319 /* Image.swift in Sources */,
 				9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */,
 				E9430FEC21A0A99C00D40221 /* PhotoCollectionViewDelegate.swift in Sources */,
+				E975886221ADEF31000CA672 /* Threads.swift in Sources */,
 				E9BD32212190F07800CE8319 /* ImageManipulation.swift in Sources */,
 				E9430FEA21A0A0E300D40221 /* UIViewExtension.swift in Sources */,
 				E9FA88D5218A24B7007D5AD5 /* PointAndShootViewController.swift in Sources */,
@@ -399,14 +403,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 885PZU27VJ;
+				DEVELOPMENT_TEAM = AEWFH68RD8;
 				INFOPLIST_FILE = Camera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CoolCam;
+				PRODUCT_BUNDLE_IDENTIFIER = example.CoolCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -418,14 +422,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 885PZU27VJ;
+				DEVELOPMENT_TEAM = AEWFH68RD8;
 				INFOPLIST_FILE = Camera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CoolCam;
+				PRODUCT_BUNDLE_IDENTIFIER = example.CoolCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

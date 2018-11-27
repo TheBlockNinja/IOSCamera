@@ -11,6 +11,7 @@ import UIKit
 
 struct ImageManipulation{
     static let SEPIA = "CISepiaTone"
+    static let GRAYSCALE = "CIPhotoEffectTonal"
     static let NON = ""
     static let NOISE = ""
     
@@ -33,54 +34,30 @@ struct ImageManipulation{
                 if let newImage = newImage{
                     outputImage = UIImage(cgImage: newImage)
                 }
-               // outputImage = UIImage.init(cgImage: newImage!, scale: 1.0, orientation: image.imageOrientation)
+
             }
         }
         return outputImage
     }
-    
+    static let ctx = CIContext()
     private static func applyFilter(_ filter:CIFilter,image:CIImage,effect:Double)->CGImage?{
         //from https://developer.apple.com/documentation/coreimage/processing_an_image_using_built-in_filters
         //altered
         filter.setValue(image, forKey: kCIInputImageKey)
-        filter.setValue(effect, forKey: kCIInputIntensityKey)
+        if filter.name == SEPIA{
+            filter.setValue(effect, forKey: kCIInputIntensityKey)
+        }
+        
         //https://stackoverflow.com/questions/27085225/getting-ciimage-from-uiimage-swift
         //altered
-       // let openGLContext = EAGLContext(api: .openGLES1)
-        //let context = CIContext(eaglContext: openGLContext!)
-        let ctx = CIContext()
         let cgImage = ctx.createCGImage((filter.outputImage)!, from:filter.outputImage!.extent)
+        
         return cgImage
     }
     
-    func pixelateImage(_ image:UIImage,amount:Double){
-        
-        
-    }
-    func grayscale(_ image:UIImage){
-        
-    }
-    func lineart(_ image:UIImage){
-        
-        
-    }
-    func differences(_ image1:UIImage,_ image2:UIImage){
-        
-        
-        
-        
-        
-    }
-
-    
-
-
-
-    
-    
     
 }
-
+/*
 struct drawOnImage{
     //https://stackoverflow.com/questions/39950125/how-do-i-draw-on-an-image-in-swift
     
@@ -126,3 +103,4 @@ struct drawOnImage{
     
     
 }
+*/

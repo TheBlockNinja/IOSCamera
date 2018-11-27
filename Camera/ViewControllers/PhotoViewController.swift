@@ -27,6 +27,7 @@ class PhotoViewController: UIViewController {
         addNotifications()
         CollectionDelegate.justDeleted = false
         didaddmoreImages()
+        UICamera.shared.setCameraSettings(Cameras.non)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,7 +38,6 @@ class PhotoViewController: UIViewController {
     func didUpdateViewController(){
         DispatchQueue.main.async {
             self.Collection.reloadData()
-            Thread.current.cancel()
         }
     }
     
@@ -64,7 +64,6 @@ class PhotoViewController: UIViewController {
                     }
                 }
             }
-            Thread.current.cancel()
           //  Thread.exit()
         }
     }

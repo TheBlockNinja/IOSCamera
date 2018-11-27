@@ -16,6 +16,7 @@ class PointAndShootViewController: BaseCameraViewController{
     
     @IBOutlet weak var cameraSkinImageView: UIImageView!
     
+    @IBOutlet weak var filteredImageFeed: UIImageView!
     @IBOutlet weak var FlashBTN: UIButton!
     
     @IBOutlet weak var flashIndicator: UILabel!
@@ -29,6 +30,7 @@ class PointAndShootViewController: BaseCameraViewController{
     override func viewWillAppear(_ animated: Bool) {
         self.addConnections(previewCameraFeed: previewCameraFeed, previewImage: previewImage, cameraSettings: Cameras.PointAndShoot)
         setCameraSkin(image: cameraSkinImageView)
+        setFilterFeed(filteredImageFeed)
         super.viewWillAppear(animated)
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,6 +45,7 @@ class PointAndShootViewController: BaseCameraViewController{
             FlashBTN.isHidden = true
             backBtn.isHidden = false
             flashIndicator.isHidden = true
+            filteredImageFeed.frame = previewCameraFeed.frame
         }
     }
     @IBAction func focusLong(_ sender: UILongPressGestureRecognizer) {
@@ -55,6 +58,7 @@ class PointAndShootViewController: BaseCameraViewController{
             FlashBTN.isHidden = false
             backBtn.isHidden = true
             flashIndicator.isHidden = false
+            filteredImageFeed.frame = cameraLensBtn.frame
         }
     }
 
@@ -71,13 +75,12 @@ class PointAndShootViewController: BaseCameraViewController{
         if UICamera.shared.getCurrentFlash() == "ON"{
             flashIndicator.backgroundColor = .yellow
             flashIndicator.addShadow(color: .yellow, radius: 15)
-            flashIndicator.alpha = 0.3
+            flashIndicator.alpha = 0.6
         }else{
             flashIndicator.backgroundColor = .clear
             flashIndicator.addShadow(color: .clear, radius: 0)
         }
         
-      //  FlashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
     }
 
 }

@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         deleteAllImagesBTN.setTitle("Delete \(UICamera.shared.pictures.count) pictures", for: .normal)
+        UICamera.shared.setCameraSettings(Cameras.non)
     }
 
     @IBAction func deleteAllImages(_ sender: Any) {

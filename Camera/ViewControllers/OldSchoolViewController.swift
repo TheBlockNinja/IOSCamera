@@ -18,11 +18,12 @@ class OldSchoolViewController: BaseCameraViewController {
     
     @IBOutlet weak var flashBTN: UIButton!
     
+  
+    @IBOutlet weak var flashNotification: UIImageView!
+    
     @IBOutlet weak var focusSlider: UISlider!
     
     @IBOutlet weak var zoomBTN: UIButton!
-    
-    var previewTimer:Timer?
     
     @IBOutlet weak var filterImageView: UIImageView!
     
@@ -32,11 +33,20 @@ class OldSchoolViewController: BaseCameraViewController {
         focusSlider.frame = CGRect(x: 0, y: UIScreen.main.bounds.height*0.1, width: 50, height: UIScreen.main.bounds.height*0.75)
         focusSlider.setValue(0.0, animated: true)
         filterImageView.frame = zoomBTN.frame
+        flashNotification.layer.cornerRadius = flashNotification.frame.width/2
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        addConnections(previewCameraFeed: cameraPreview, previewImage: PreviewImage, cameraSettings: Cameras.OldSchool)
+        setFilterFeed(filterImageView)
+        setCameraSkin(image: cameraSkinImageView)
+        let distance = CGFloat(focusSlider!.value)
+        UICamera.shared.setFocalDistance(distance)
+        updateFlash()
+        super.viewWillAppear(animated)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UICamera.shared.setCameraSettings(Cameras.non)
-        previewTimer?.invalidate()
+        filterImageView.image = nil
     }
     
     @IBAction func focusSliderChanged(_ sender: Any) {
@@ -47,6 +57,8 @@ class OldSchoolViewController: BaseCameraViewController {
         enlargeCamera()
         backBtn.isHidden = false
         zoomBTN.isHidden = true
+        flashNotification.isHidden = true
+        flashBTN.isHidden = true
         filterImageView.frame = cameraPreview.frame
     }
     @IBAction func zoomOut(_ sender: Any) {
@@ -54,30 +66,34 @@ class OldSchoolViewController: BaseCameraViewController {
             enlargeCamera()
             backBtn.isHidden = true
             zoomBTN.isHidden = false
+            flashNotification.isHidden = false
+            flashBTN.isHidden = false
             UIView.animate(withDuration: 0.5, animations: {
                  self.filterImageView.frame = self.zoomBTN.frame
-                })
+            })
            
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        addConnections(previewCameraFeed: cameraPreview, previewImage: PreviewImage, cameraSettings: Cameras.OldSchool)
-        setCameraSkin(image: cameraSkinImageView)
-        let distance = CGFloat(focusSlider!.value)
-        UICamera.shared.setFocalDistance(distance)
-        super.viewWillAppear(animated)
-        flashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
-        previewTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(preview), userInfo: nil, repeats: true)
-    }
-    @objc func preview(){
-        filterImageView.image = videoFeed.Feed
-    }
-    
+
+
     @IBAction func switchFlash(_ sender: Any) {
         UICamera.shared.switchFlash()
-        flashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
+        updateFlash()
     }    
 
+    private func updateFlash(){
+        if UICamera.shared.getCurrentFlash() == "ON"{
+            flashNotification.isHidden = false;
+            flashNotification.backgroundColor = .red
+            flashNotification.addShadow(color: .red, radius: 10)
+        }else if UICamera.shared.getCurrentFlash() == "AUTO"{
+            flashNotification.isHidden = false;
+            flashNotification.backgroundColor = .cyan
+            flashNotification.addShadow(color: .cyan, radius: 10)
+        }else{
+            flashNotification.isHidden = true;
+        }
+    }
     
     @IBAction func TakePicture(_ sender: Any) {
         takePicture()

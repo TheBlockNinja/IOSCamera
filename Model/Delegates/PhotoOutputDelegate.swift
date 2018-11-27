@@ -31,9 +31,8 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
         }else{
             createImagePreview(imagePreview)
         }
-        DispatchQueue.global().async {
+        Threads.PictureThread.async {
             self.saveImage(photo: photo,output)
-           // Thread.current.cancel()
         }
     }
     

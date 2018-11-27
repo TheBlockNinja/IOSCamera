@@ -36,12 +36,11 @@ struct Pictures{
     }
     
     func savePictures(){
-        DispatchQueue.global().async {
+        Threads.PictureThread.async {
             let success = NSKeyedArchiver.archiveRootObject(self.images, toFile: self.filePath(fileName: Pictures.archiveName));
             if success{
                 NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
             }
-            Thread.current.cancel()
         }
         
     }

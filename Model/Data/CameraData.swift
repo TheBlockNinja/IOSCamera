@@ -42,12 +42,7 @@ struct CameraData{
          previewVideoLayer.connection?.videoOrientation = UIView.getCurrentOrientation()
         videoOutput.connection(with: .video)?.videoOrientation = UIView.getCurrentOrientation()
     }
-    mutating func setCameraData(_ camera:Cameras){
-        setFocusMode(camera.getFocusMode())
-        setExposureMode(camera.exposure)
-        setFlashMode(camera.flash.first ?? .off)
-        quailty = camera.settings.imagePreset
-    }
+
     func getPhotoSettings()->AVCapturePhotoSettings{
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         settings.flashMode = flashMode
@@ -69,15 +64,25 @@ struct CameraData{
         setCameraFocalLength(distance)
     }
     
+    mutating func setCameraData(_ camera:Cameras){
+        setFocusMode(camera.getFocusMode())
+        setExposureMode(camera.exposure)
+        setFlashMode(camera.flash.first ?? .off)
+        quailty = camera.settings.imagePreset
+    }
+    
     mutating func setFocusMode(_ focus:AVCaptureDevice.FocusMode){
         autoFocus = focus
     }
+    
     mutating func setFlashMode(_ flash:AVCaptureDevice.FlashMode){
         flashMode = flash
     }
+    
     mutating func setExposureMode(_ exposure:AVCaptureDevice.ExposureMode){
         exposureMode = exposure
     }
+    
     mutating func flipPostion(){
         if position == .back{
             position = .front
@@ -215,9 +220,8 @@ struct CameraData{
         if !session.outputs.contains(videoOutput){
             session.stopRunning()
             videoOutput.connection(with: .video)?.videoOrientation = UIView.getCurrentOrientation()
-            // videoOutput.connection?.videoOrientation = UIView.getCurrentOrientation()
             videoOutput.alwaysDiscardsLateVideoFrames = true
-            videoOutput.setSampleBufferDelegate(videoF, queue: DispatchQueue.global())
+            videoOutput.setSampleBufferDelegate(videoF, queue: Threads.FilterVideoFeedTread)
         
             session.addOutput(videoOutput)
         
@@ -232,16 +236,12 @@ class videoFeed:NSObject, AVCaptureVideoDataOutputSampleBufferDelegate{
 
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-     //   print("here")
-        
-        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name{
+        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name || UICamera.shared.getCurrentCamera() == Cameras.PointAndShoot.name{
             let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
             if let buffer = buffer{
                 let image = CIImage(cvImageBuffer: buffer)
                 
                 let outputImage = ImageManipulation.applyFilterWith(name: UICamera.shared.getFilterInfo().name, image: image, percentage: UICamera.shared.getFilterInfo().effect)
-
-                    //videoFeed.Feed = nil
                 
                     videoFeed.Feed = outputImage.imageFlippedForRightToLeftLayoutDirection()
                 
