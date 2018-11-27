@@ -57,7 +57,7 @@ class PhotoViewController: UIViewController {
     
     private func deseletItems(){
          DispatchQueue.main.async {
-            self.view.showLabelWith(frame: self.SaveImageRect!, text: "Successfully Saved Image", duration: 1)
+          //  self.view.showLabelWith(frame: self.SaveImageRect!, text: "Successfully Saved Image", duration: 1)
             if let items = self.Collection.indexPathsForSelectedItems{
                 for i in items{
                     if let cell = self.Collection.cellForItem(at: i){

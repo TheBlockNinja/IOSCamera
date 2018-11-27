@@ -35,18 +35,21 @@ class BaseCameraViewController:UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioSession = AVAudioPlayer()
-        try? AVAudioSession.sharedInstance().setActive(true)
-        
-        volumeView = MPVolumeView(frame:view.frame)
-        volumeView?.alpha = 0.01
-        volumeView?.isHidden = false
-        self.view.addSubview(volumeView!)
+
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
         setFocused()
+
+        if volumeView == nil{
+            audioSession = AVAudioPlayer()
+            try? AVAudioSession.sharedInstance().setActive(true)
+            volumeView = MPVolumeView(frame:view.frame)
+            volumeView?.alpha = 0.01
+            volumeView?.isHidden = false
+            self.view.addSubview(volumeView!)
+        }
     }
 
     
@@ -57,7 +60,9 @@ class BaseCameraViewController:UIViewController{
         cameraSkin = nil
         currentCamera = nil
         removeNotifications()
-        
+        audioSession = nil
+        volumeView?.removeFromSuperview()
+        volumeView = nil
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

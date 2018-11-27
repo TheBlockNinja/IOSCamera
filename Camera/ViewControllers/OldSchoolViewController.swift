@@ -31,6 +31,7 @@ class OldSchoolViewController: BaseCameraViewController {
         focusSlider.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -2)
         focusSlider.frame = CGRect(x: 0, y: UIScreen.main.bounds.height*0.1, width: 50, height: UIScreen.main.bounds.height*0.75)
         focusSlider.setValue(0.0, animated: true)
+        filterImageView.frame = zoomBTN.frame
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -45,12 +46,14 @@ class OldSchoolViewController: BaseCameraViewController {
         enlargeCamera()
         backBtn.isHidden = false
         zoomBTN.isHidden = true
+        filterImageView.frame = cameraPreview.frame
     }
     @IBAction func zoomOut(_ sender: Any) {
         if zoomBTN.isHidden == true{
             enlargeCamera()
             backBtn.isHidden = true
             zoomBTN.isHidden = false
+            filterImageView.frame = zoomBTN.frame
         }
     }
     override func viewWillAppear(_ animated: Bool) {
