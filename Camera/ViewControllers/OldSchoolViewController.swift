@@ -53,7 +53,10 @@ class OldSchoolViewController: BaseCameraViewController {
             enlargeCamera()
             backBtn.isHidden = true
             zoomBTN.isHidden = false
-            filterImageView.frame = zoomBTN.frame
+            UIView.animate(withDuration: 0.5, animations: {
+                 self.filterImageView.frame = self.zoomBTN.frame
+                })
+           
         }
     }
     override func viewWillAppear(_ animated: Bool) {
