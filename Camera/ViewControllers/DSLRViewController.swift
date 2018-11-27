@@ -27,6 +27,7 @@ class DSLRViewController: BaseCameraViewController {
         focusSlider.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -2)
         focusSlider.frame = CGRect(x: 0, y: UIScreen.main.bounds.height*0.1, width: 50, height: UIScreen.main.bounds.height*0.75)
        // focusSlider.setValue(0.0, animated: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +36,7 @@ class DSLRViewController: BaseCameraViewController {
         let float = Float(UICamera.shared.getFocalDistanceF())
         focusSlider.setValue(float, animated: true)
         FlashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
+        updateFocusMode()
         super.viewWillAppear(animated)
    
     }
@@ -81,7 +83,7 @@ class DSLRViewController: BaseCameraViewController {
     }
     func updateFocusMode(){
         focusModeBTN.setTitle(UICamera.shared.getFocusMode(), for: .normal)
-        if UICamera.shared.getFocusMode() == "Locked"{
+        if UICamera.shared.getFocusMode() == "Manual"{
             let distance = CGFloat(focusSlider!.value)
             UICamera.shared.setFocalDistance(distance)
             focusSlider.isHidden = false;

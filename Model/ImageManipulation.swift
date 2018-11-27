@@ -30,7 +30,9 @@ struct ImageManipulation{
         for n in name{
             if let filter = CIFilter(name:n){
                 let newImage = applyFilter(filter, image: image,effect: percentage)
-                outputImage = UIImage(cgImage: newImage!)
+                if let newImage = newImage{
+                    outputImage = UIImage(cgImage: newImage)
+                }
                // outputImage = UIImage.init(cgImage: newImage!, scale: 1.0, orientation: image.imageOrientation)
             }
         }
@@ -44,6 +46,8 @@ struct ImageManipulation{
         filter.setValue(effect, forKey: kCIInputIntensityKey)
         //https://stackoverflow.com/questions/27085225/getting-ciimage-from-uiimage-swift
         //altered
+       // let openGLContext = EAGLContext(api: .openGLES1)
+        //let context = CIContext(eaglContext: openGLContext!)
         let ctx = CIContext()
         let cgImage = ctx.createCGImage((filter.outputImage)!, from:filter.outputImage!.extent)
         return cgImage

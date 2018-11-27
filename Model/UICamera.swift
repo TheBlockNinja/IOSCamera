@@ -34,9 +34,10 @@ class UICamera{
     init() {
         //adds a new thread that loads the pictures
         //intesive process
-        DispatchQueue.global().async {
-            self.pictures.loadPictures()
-        }
+       // DispatchQueue.global().async {
+        self.pictures.loadPictures()
+           // Thread.()
+      //  }
         camera.applyLiveFilterToCameraFeed()
     }
     
@@ -69,9 +70,9 @@ class UICamera{
     }
     func getFocusMode()->String{
         switch cameraSettings.getFocusMode() {
-        case .locked :return "Locked"
-        case .autoFocus: return "Manual"
-        case .continuousAutoFocus: return "Auto"
+        case .locked :return "Manual"
+        case .autoFocus: return "Tap(AF)"
+        case .continuousAutoFocus: return "Cont.(AF)"
             
         }
     }

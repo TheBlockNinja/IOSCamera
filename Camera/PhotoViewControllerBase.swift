@@ -63,6 +63,7 @@ class BaseCameraViewController:UIViewController{
         audioSession = nil
         volumeView?.removeFromSuperview()
         volumeView = nil
+        //UICamera.shared.setCameraSettings(Cameras.non)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

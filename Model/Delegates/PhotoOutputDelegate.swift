@@ -33,6 +33,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
         }
         DispatchQueue.global().async {
             self.saveImage(photo: photo,output)
+           // Thread.current.cancel()
         }
     }
     
@@ -65,7 +66,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
             let newImg = Image(image: UIImage(data: compressed!)!)
             UICamera.shared.pictures.addImage(newImg)
             UICamera.shared.pictures.savePictures()
-           
+           Thread.current.cancel()
         }
     }
 }

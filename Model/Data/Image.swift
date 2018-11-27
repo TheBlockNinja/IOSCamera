@@ -92,7 +92,7 @@ class Image:NSObject,NSCoding,Comparable{
         DispatchQueue.main.async {
             self.imageView = UIImageView(image: self.data)
             self.imageView.contentMode = .scaleAspectFill
-        }
+       }
         
         
     }

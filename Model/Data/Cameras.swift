@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import AVFoundation
 struct Cameras{
+    static let non = Cameras(name: "non",
+                              flash: [.off],
+                              focus: [.autoFocus],
+                              CameraSkin: nil,
+                              filterName:[ImageManipulation.NON])
     static let OldSchool = Cameras(name: "Old School",
                                           flash: [.off,.on],
                                           focus: [.locked],

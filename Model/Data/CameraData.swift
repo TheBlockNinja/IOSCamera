@@ -229,6 +229,7 @@ struct CameraData{
 }
 class videoFeed:NSObject, AVCaptureVideoDataOutputSampleBufferDelegate{
     static var Feed:UIImage! = UIImage()
+
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
      //   print("here")
@@ -236,17 +237,14 @@ class videoFeed:NSObject, AVCaptureVideoDataOutputSampleBufferDelegate{
         if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name{
             let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
             if let buffer = buffer{
-                var image = CIImage(cvImageBuffer: buffer)
+                let image = CIImage(cvImageBuffer: buffer)
                 
                 let outputImage = ImageManipulation.applyFilterWith(name: UICamera.shared.getFilterInfo().name, image: image, percentage: UICamera.shared.getFilterInfo().effect)
-                
-                DispatchQueue.main.async {
-                    videoFeed.Feed = outputImage.imageFlippedForRightToLeftLayoutDirection()
-                }
-                
 
+                    //videoFeed.Feed = nil
                 
-            
+                    videoFeed.Feed = outputImage.imageFlippedForRightToLeftLayoutDirection()
+                
             }
             
         }

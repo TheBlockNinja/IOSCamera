@@ -19,9 +19,9 @@ extension UIView{
         //moves label to the front of the current view
         self.bringSubviewToFront(lbl)
         lbl.backgroundColor = .gray
-        lbl.alpha = 0.7
+        lbl.alpha = 0.9
         lbl.textAlignment = .center
-        lbl.font = UIFont.boldSystemFont(ofSize: 34)
+        lbl.font = UIFont.boldSystemFont(ofSize: 20)
         lbl.textColor = .white
         lbl.text = text
         

@@ -41,6 +41,7 @@ struct Pictures{
             if success{
                 NotificationCenter.default.post(name: PhotoOutputDelegate.SavedImageNotification, object: nil)
             }
+            Thread.current.cancel()
         }
         
     }
@@ -136,7 +137,6 @@ struct Pictures{
                         addImage(i);
                     }
                     NotificationCenter.default.post(name: Pictures.UpdateLoadingNotification, object: nil)
-                
                 }
             }
         }

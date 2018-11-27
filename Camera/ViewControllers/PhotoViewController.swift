@@ -20,7 +20,7 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         Collection.delegate = CollectionDelegate
         Collection.dataSource = CollectionDelegate
-        SaveImageRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 40)
+        SaveImageRect = CGRect(x: 0, y: 0, width: 75, height: 30)
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -37,14 +37,13 @@ class PhotoViewController: UIViewController {
     func didUpdateViewController(){
         DispatchQueue.main.async {
             self.Collection.reloadData()
+            Thread.current.cancel()
         }
     }
     
     @objc func didaddmoreImages(){
         if !CollectionDelegate.justDeleted {
-            DispatchQueue.main.async {
-                self.Collection.reloadData()
-            }
+           didUpdateViewController()
         }else{
             CollectionDelegate.justDeleted = false
         }
@@ -57,7 +56,7 @@ class PhotoViewController: UIViewController {
     
     private func deseletItems(){
          DispatchQueue.main.async {
-          //  self.view.showLabelWith(frame: self.SaveImageRect!, text: "Successfully Saved Image", duration: 1)
+            self.view.showLabelWith(frame: self.SaveImageRect!, text: "Saved", duration: 1.5)
             if let items = self.Collection.indexPathsForSelectedItems{
                 for i in items{
                     if let cell = self.Collection.cellForItem(at: i){
@@ -65,6 +64,8 @@ class PhotoViewController: UIViewController {
                     }
                 }
             }
+            Thread.current.cancel()
+          //  Thread.exit()
         }
     }
     private func addNotifications(){

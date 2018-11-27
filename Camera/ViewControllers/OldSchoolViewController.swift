@@ -35,6 +35,7 @@ class OldSchoolViewController: BaseCameraViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        UICamera.shared.setCameraSettings(Cameras.non)
         previewTimer?.invalidate()
     }
     
@@ -66,7 +67,7 @@ class OldSchoolViewController: BaseCameraViewController {
         UICamera.shared.setFocalDistance(distance)
         super.viewWillAppear(animated)
         flashBTN.setTitle("\(UICamera.shared.getCurrentFlash())", for: .normal)
-        previewTimer = Timer.scheduledTimer(timeInterval: 1/60, target: self, selector: #selector(preview), userInfo: nil, repeats: true)
+        previewTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(preview), userInfo: nil, repeats: true)
     }
     @objc func preview(){
         filterImageView.image = videoFeed.Feed
