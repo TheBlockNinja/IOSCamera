@@ -24,18 +24,20 @@ class UICamera{
     private var camera = CameraData()
     
     //contains the current camera settings
-    private var cameraSettings = CameraSettings.PointAndShoot
+    private var cameraSettings = Cameras.PointAndShoot
     
     //the current focalDistance of the camera
     private var focalDistance:CGFloat = 0.0
     
-
+    
+    private var CurrentCamera = ""
     init() {
         //adds a new thread that loads the pictures
         //intesive process
         DispatchQueue.global().async {
             self.pictures.loadPictures()
         }
+        camera.applyLiveFilterToCameraFeed()
     }
     
     //updates orientationg
@@ -43,12 +45,17 @@ class UICamera{
         camera.updateOrientation()
     }
     //sets the camera settings
-    func setCameraSettings(_ cameraSettings:CameraSettings){
+    func setCameraSettings(_ cameraSettings:Cameras){
         self.cameraSettings = cameraSettings
+        camera.setCameraData(self.cameraSettings)
         applyCameraSettings()
+        CurrentCamera = cameraSettings.name
         camera.setPosition(self.cameraSettings.defaultPos!)
     }
     
+    func getCurrentCamera()->String{
+        return CurrentCamera
+    }
     //gets the current focal distance as a string
     func getFocalDistance()->String{
         return String(format: "%0.f%", focalDistance*100)
@@ -124,6 +131,12 @@ class UICamera{
         camera.flipPostion()
     }
     
+    func getCompression()->Double{
+        return cameraSettings.settings.getCompression()
+    }
+    func getFilterInfo()->(name:[String],effect:Double){
+        return (cameraSettings.settings.filter,cameraSettings.settings.filterEffect)
+    }
     //changes the current focal distance
     func changeFocualDistance(by num:CGFloat=0.005)
     {
@@ -147,9 +160,6 @@ class UICamera{
     
     //applies camera settings to the camera
     private func applyCameraSettings(){
-        camera.setFocusMode(cameraSettings.getFocusMode())
-        camera.setExposureMode(cameraSettings.exposure)
-        camera.setFlashMode(cameraSettings.flash.first ?? .off)
         focusCameraOnPoint(cameraSettings.focusPoint, distance: focalDistance)
     }
 }

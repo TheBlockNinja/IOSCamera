@@ -28,7 +28,7 @@ struct CameraData{
     private var autoFocus = AVCaptureDevice.FocusMode.autoFocus
     private var flashMode = AVCaptureDevice.FlashMode.off
     private var exposureMode = AVCaptureDevice.ExposureMode.autoExpose
-    
+
     init() {
         configureSession()
         setupPreview()
@@ -40,6 +40,13 @@ struct CameraData{
     func updateOrientation()
     {
          previewVideoLayer.connection?.videoOrientation = UIView.getCurrentOrientation()
+        videoOutput.connection(with: .video)?.videoOrientation = UIView.getCurrentOrientation()
+    }
+    mutating func setCameraData(_ camera:Cameras){
+        setFocusMode(camera.getFocusMode())
+        setExposureMode(camera.exposure)
+        setFlashMode(camera.flash.first ?? .off)
+        quailty = camera.settings.imagePreset
     }
     func getPhotoSettings()->AVCapturePhotoSettings{
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
@@ -198,6 +205,57 @@ struct CameraData{
 
     }
 
+    
+    
+    
+    //extra stuff
+    let videoOutput = AVCaptureVideoDataOutput()
+    let videoF = videoFeed()
+    func applyLiveFilterToCameraFeed(){
+        if !session.outputs.contains(videoOutput){
+            session.stopRunning()
+            videoOutput.connection(with: .video)?.videoOrientation = UIView.getCurrentOrientation()
+            // videoOutput.connection?.videoOrientation = UIView.getCurrentOrientation()
+            videoOutput.alwaysDiscardsLateVideoFrames = true
+            videoOutput.setSampleBufferDelegate(videoF, queue: DispatchQueue.global())
+        
+            session.addOutput(videoOutput)
+        
+        session.startRunning()
+        }
+    }
+
+    
+}
+class videoFeed:NSObject, AVCaptureVideoDataOutputSampleBufferDelegate{
+    static var Feed:UIImage! = UIImage()
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+     //   print("here")
+        
+        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name{
+            let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+            if let buffer = buffer{
+                var image = CIImage(cvImageBuffer: buffer)
+                
+                let outputImage = ImageManipulation.applyFilterWith(name: UICamera.shared.getFilterInfo().name, image: image, percentage: UICamera.shared.getFilterInfo().effect)
+                
+                DispatchQueue.main.async {
+                    videoFeed.Feed = outputImage.imageFlippedForRightToLeftLayoutDirection()
+                }
+                
+
+                
+            
+            }
+            
+        }
+            
+        
+        
+        
+        
+    }
 }
 
 

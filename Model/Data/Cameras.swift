@@ -9,25 +9,29 @@
 import Foundation
 import UIKit
 import AVFoundation
-struct CameraSettings{
-    static let OldSchool = CameraSettings(name: "Old School",
+struct Cameras{
+    static let OldSchool = Cameras(name: "Old School",
                                           flash: [.off,.on],
                                           focus: [.locked],
                                           CameraSkin: nil,
                                           defaultPos:.back,
                                           exposure:.continuousAutoExposure,
-                                          focusPoint:nil)
-    static let DSLR = CameraSettings(name: "DSLR",
+                                          focusPoint:nil,
+                                          filterName:[ImageManipulation.SEPIA])
+    static let DSLR = Cameras(name: "DSLR",
                                      flash: [.off,.auto,.on],
                                      focus: [.autoFocus,.locked,.continuousAutoFocus],
-                                     CameraSkin: nil)
-    static let PointAndShoot = CameraSettings(name: "Point and Shoot",
+                                     CameraSkin: nil,
+                                     filterName:[ImageManipulation.NON])
+    static let PointAndShoot = Cameras(name: "Point and Shoot",
                                               flash: [.off,.on],
                                               focus: [.continuousAutoFocus],
                                               CameraSkin: nil,
                                               defaultPos:.back,
                                               exposure:.autoExpose,
-                                              focusPoint:CGPoint(x:0.5,y:0.5))
+                                              focusPoint:CGPoint(x:0.5,y:0.5),
+                                              filterName:[ImageManipulation.NON])
+    
     
     
     let name:String
@@ -39,17 +43,16 @@ struct CameraSettings{
     let CameraSkin:UIImage?
     var defaultPos:AVCaptureDevice.Position?
     var focusPoint:CGPoint? = nil
-    
-    
     var contentMode = UIView.ContentMode.scaleAspectFill
     
+    var settings = cameraSettings()
     
     init(name:String,flash:[AVCaptureDevice.FlashMode],
          focus:[AVCaptureDevice.FocusMode],
          CameraSkin:UIImage?,
          defaultPos:AVCaptureDevice.Position,
          exposure:AVCaptureDevice.ExposureMode,
-         focusPoint:CGPoint?) {
+         focusPoint:CGPoint?,filterName:[String]) {
         self.name = name
         self.flash = flash
         self.focus = focus
@@ -57,8 +60,9 @@ struct CameraSettings{
         self.defaultPos = defaultPos
         self.exposure = exposure
         self.focusPoint = focusPoint
+        settings.filter = filterName
     }
-    
+    /*
     init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?,defaultPos:AVCaptureDevice.Position) {
         self.name = name
         self.flash = flash
@@ -67,15 +71,22 @@ struct CameraSettings{
         self.defaultPos = defaultPos
         exposure = .autoExpose
     }
+    */
     
-    
-    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?) {
+    init(name:String,flash:[AVCaptureDevice.FlashMode],focus:[AVCaptureDevice.FocusMode],CameraSkin:UIImage?,filterName:[String]) {
         self.name = name
         self.flash = flash
         self.focus = focus
         self.CameraSkin = CameraSkin
         self.defaultPos = .back
         exposure = .autoExpose
+        settings.filter = filterName
+    }
+    private mutating func load(){
+        
+    }
+    mutating func save(){
+        
     }
     private mutating func incrementFlash(){
         selectedFlash = selectedFlash + 1
@@ -103,3 +114,37 @@ struct CameraSettings{
     
 }
 
+struct cameraSettings:Codable{
+    private var imageCompression:Double = 0.5
+    var filterEffect:Double = 1
+    var filter:[String] = []
+    private var imageQuality:Int = 2
+    
+    func getCompression()->Double{
+        return imageCompression
+    }
+    mutating func setImageCompression(_ percent:Double){
+        imageCompression = percent
+        if imageCompression > 1{
+            imageCompression = 1
+        }
+        if imageCompression < 0{
+            imageCompression = 0
+        }
+    }
+    
+    mutating func setImageQuality(_ q:Int){
+        imageQuality = q
+    }
+    
+    var imagePreset:AVCaptureSession.Preset{
+        if imageQuality == 0{
+            return .low
+        }
+        if imageQuality == 1{
+            return .medium
+        }
+        return .high
+    }
+    
+}

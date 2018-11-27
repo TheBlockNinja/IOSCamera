@@ -10,21 +10,42 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var deleteAllImagesBTN: UIButton!
+    var countDownTimer:Timer!
+    var countDown = 3;
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+   
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        deleteAllImagesBTN.setTitle("Delete \(UICamera.shared.pictures.count) pictures", for: .normal)
     }
-    */
 
+    @IBAction func deleteAllImages(_ sender: Any) {
+        if countDownTimer != nil{
+            countDownTimer.invalidate()
+            countDownTimer = nil
+            countDown = 3
+            update()
+        }else{
+            countDownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(deletePictures), userInfo: nil, repeats: true)
+        }
+    }
+    @objc private func deletePictures(){
+        if countDown < 0 {
+            countDownTimer.invalidate()
+            countDownTimer = nil
+            countDown = 3
+            UICamera.shared.pictures.deleteAllImages()
+            update()
+        }else{
+            deleteAllImagesBTN.setTitle("Deleting in \(countDown)", for: .normal)
+            countDown -= 1
+        }
+    }
+    func update(){
+        deleteAllImagesBTN.setTitle("Delete \(UICamera.shared.pictures.count) pictures", for: .normal)
+    }
 }

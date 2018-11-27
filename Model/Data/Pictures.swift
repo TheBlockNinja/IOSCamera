@@ -95,6 +95,13 @@ struct Pictures{
             savePictures()
         }
     }
+    mutating func deleteAllImages(){
+        for i in images{
+            i.delete()
+        }
+        images.removeAll()
+        savePictures()
+    }
     
     //has no use yet
     //selects and deselects Images

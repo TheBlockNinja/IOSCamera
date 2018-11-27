@@ -57,7 +57,6 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
     }
     //collection view protocal methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(UICamera.shared.pictures.count)
         return UICamera.shared.pictures.count
     }
     
@@ -76,9 +75,6 @@ class PhotoCollectionViewDelegate:NSObject,UICollectionViewDelegate,UICollection
         return cell;
         
     }
-   // func numberOfSections(in collectionView: UICollectionView) -> Int {
-       // return 4
-   // }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView.cellForItem(at: indexPath)?.transform.isIdentity)!{

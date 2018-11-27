@@ -45,7 +45,7 @@ extension UIView{
             let scaleUp = CGAffineTransform(scaleX: 4, y: 4)
             UIView.animate(withDuration: 0.5, animations: {
                 self.transform = scaleUp
-                self.alpha = 0.05
+                self.alpha = 0.04
             })
         }
     }

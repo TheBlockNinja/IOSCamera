@@ -10,6 +10,44 @@ import Foundation
 import UIKit
 
 struct ImageManipulation{
+    static let SEPIA = "CISepiaTone"
+    static let NON = ""
+    static let NOISE = ""
+    
+    static func applyFilterWith(name:[String],image:UIImage,percentage:Double)->UIImage{
+        var outputImage = image
+        for n in name{
+            let ciimage = CIImage(image: outputImage)
+            if let ciimage = ciimage,let filter = CIFilter(name:n){
+                let newImage = applyFilter(filter, image: ciimage,effect: percentage)
+                outputImage = UIImage.init(cgImage: newImage!, scale: 1.0, orientation: image.imageOrientation)
+            }
+        }
+        return outputImage
+    }
+    static func applyFilterWith(name:[String],image:CIImage,percentage:Double)->UIImage{
+        var outputImage = UIImage()
+        for n in name{
+            if let filter = CIFilter(name:n){
+                let newImage = applyFilter(filter, image: image,effect: percentage)
+                outputImage = UIImage(cgImage: newImage!)
+               // outputImage = UIImage.init(cgImage: newImage!, scale: 1.0, orientation: image.imageOrientation)
+            }
+        }
+        return outputImage
+    }
+    
+    private static func applyFilter(_ filter:CIFilter,image:CIImage,effect:Double)->CGImage?{
+        //from https://developer.apple.com/documentation/coreimage/processing_an_image_using_built-in_filters
+        //altered
+        filter.setValue(image, forKey: kCIInputImageKey)
+        filter.setValue(effect, forKey: kCIInputIntensityKey)
+        //https://stackoverflow.com/questions/27085225/getting-ciimage-from-uiimage-swift
+        //altered
+        let ctx = CIContext()
+        let cgImage = ctx.createCGImage((filter.outputImage)!, from:filter.outputImage!.extent)
+        return cgImage
+    }
     
     func pixelateImage(_ image:UIImage,amount:Double){
         
@@ -22,8 +60,6 @@ struct ImageManipulation{
         
         
     }
-    
-    
     func differences(_ image1:UIImage,_ image2:UIImage){
         
         
@@ -31,6 +67,9 @@ struct ImageManipulation{
         
         
     }
+
+    
+
 
 
     

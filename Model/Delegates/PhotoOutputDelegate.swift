@@ -25,8 +25,12 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         let imagePreview = photo.previewPixelBuffer
-        createImagePreview(imagePreview)
-        
+        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name{
+            CurrentPreviewImage = videoFeed.Feed
+            NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
+        }else{
+            createImagePreview(imagePreview)
+        }
         DispatchQueue.global().async {
             self.saveImage(photo: photo,output)
         }
@@ -45,6 +49,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
             }else{
                CurrentPreviewImage = UIImage(ciImage: tempImage)
             }
+            
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }
     }
@@ -53,9 +58,10 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
         
         let imageData = photo.fileDataRepresentation()
         if let imageData = imageData{
-           let image =  UIImage(data: imageData)!
-        
-            let compressed = image.jpegData(compressionQuality: 0.5)
+            var image =  UIImage(data: imageData)!
+            image = ImageManipulation.applyFilterWith(name: UICamera.shared.getFilterInfo().name,image: image, percentage: UICamera.shared.getFilterInfo().effect)//change percentage
+            
+            let compressed = image.jpegData(compressionQuality: CGFloat(UICamera.shared.getCompression()))
             let newImg = Image(image: UIImage(data: compressed!)!)
             UICamera.shared.pictures.addImage(newImg)
             UICamera.shared.pictures.savePictures()

@@ -7,3 +7,16 @@
 //
 
 import Foundation
+import AVFoundation
+struct userData{
+    
+    var quality:Double
+    var color:Double
+    
+ /*   var imageQuality:AVCaptureSession.Preset{
+        if quality
+        
+        return
+    }*/
+    
+}

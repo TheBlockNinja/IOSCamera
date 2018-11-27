@@ -20,13 +20,14 @@ class PointAndShootViewController: BaseCameraViewController{
     
     @IBOutlet weak var flashIndicator: UILabel!
     @IBOutlet weak var cameraLensBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.addConnections(previewCameraFeed: previewCameraFeed, previewImage: previewImage, cameraSettings: CameraSettings.PointAndShoot)
+        self.addConnections(previewCameraFeed: previewCameraFeed, previewImage: previewImage, cameraSettings: Cameras.PointAndShoot)
         setCameraSkin(image: cameraSkinImageView)
         super.viewWillAppear(animated)
     }
@@ -40,20 +41,23 @@ class PointAndShootViewController: BaseCameraViewController{
             enlargeCamera()
             cameraLensBtn.isHidden = true
             FlashBTN.isHidden = true
+            backBtn.isHidden = false
             flashIndicator.isHidden = true
         }
     }
     @IBAction func focusLong(_ sender: UILongPressGestureRecognizer) {
         UICamera.shared.focusCameraOnPoint()
     }
-    @IBAction func zoomOutTap(_ sender: Any) {
+    @IBAction func zoomOut(_ sender: Any) {
         if cameraLensBtn.isHidden == true{
             enlargeCamera()
             cameraLensBtn.isHidden = false
             FlashBTN.isHidden = false
+            backBtn.isHidden = true
             flashIndicator.isHidden = false
         }
     }
+
     
     @IBAction func switchCamera(_ sender: Any) {
         UICamera.shared.flipCamera()
