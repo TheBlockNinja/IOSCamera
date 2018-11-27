@@ -162,7 +162,7 @@
                                     <constraint firstAttribute="height" constant="172" id="y06-X8-w9R"/>
                                 </constraints>
                             </imageView>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DSLRv0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-Fa-eZO">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DSLRv1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-Fa-eZO">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -652,6 +652,7 @@
     </scenes>
     <resources>
         <image name="DSLRv0.png" width="2436" height="1350"/>
+        <image name="DSLRv1.png" width="2436" height="1350"/>
         <image name="Old schoolv0.png" width="2436" height="1350"/>
         <image name="Point and shootv0.png" width="2436" height="1350"/>
     </resources>
