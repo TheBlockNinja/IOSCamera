@@ -14,6 +14,8 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
     //notifications
     static let PreviewNotification = Notification.Name(rawValue: "PreviewNotification")
     static let SavedImageNotification = Notification.Name(rawValue: "SavedImageNotification")
+    
+    static var FilterVideoFeed:UIImage! = UIImage()
     //current images nil if still being processed
     var CurrentPreviewImage:UIImage?
     
@@ -22,11 +24,31 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
     
 
 
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name || UICamera.shared.getCurrentCamera() == Cameras.PointAndShoot.name{
+            let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+            if let buffer = buffer{
+                let image = CIImage(cvImageBuffer: buffer)
+                
+                let outputImage = ImageManipulation.applyFilterWith(name: UICamera.shared.getFilterInfo().name, image: image, percentage: UICamera.shared.getFilterInfo().effect)
+                
+                PhotoOutputDelegate.FilterVideoFeed = outputImage.imageFlippedForRightToLeftLayoutDirection()
+                
+            }
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         let imagePreview = photo.previewPixelBuffer
         if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name || UICamera.shared.getCurrentCamera() == Cameras.PointAndShoot.name {
-            CurrentPreviewImage = videoFeed.Feed
+            CurrentPreviewImage = PhotoOutputDelegate.FilterVideoFeed
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }else{
             createImagePreview(imagePreview)

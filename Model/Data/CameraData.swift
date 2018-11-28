@@ -19,9 +19,10 @@ struct CameraData{
     let session = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     let previewVideoLayer = AVCaptureVideoPreviewLayer()
+    let videoOutput = AVCaptureVideoDataOutput()
     
-    
-    
+
+  
     private var position = AVCaptureDevice.Position.back
     private var quailty = AVCaptureSession.Preset.high
     private var currentCamera:AVCaptureDevice?
@@ -209,19 +210,13 @@ struct CameraData{
         previewVideoLayer.connection?.videoOrientation = UIView.getCurrentOrientation()
 
     }
-
     
-    
-    
-    //extra stuff
-    let videoOutput = AVCaptureVideoDataOutput()
-    let videoF = videoFeed()
-    func applyLiveFilterToCameraFeed(){
+    func applyLiveFilterToCameraFeed(delegate:PhotoOutputDelegate){
         if !session.outputs.contains(videoOutput){
             session.stopRunning()
             videoOutput.connection(with: .video)?.videoOrientation = UIView.getCurrentOrientation()
             videoOutput.alwaysDiscardsLateVideoFrames = true
-            videoOutput.setSampleBufferDelegate(videoF, queue: Threads.FilterVideoFeedTread)
+            videoOutput.setSampleBufferDelegate(delegate, queue: Threads.FilterVideoFeedTread)
         
             session.addOutput(videoOutput)
         
@@ -231,29 +226,6 @@ struct CameraData{
 
     
 }
-class videoFeed:NSObject, AVCaptureVideoDataOutputSampleBufferDelegate{
-    static var Feed:UIImage! = UIImage()
 
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name || UICamera.shared.getCurrentCamera() == Cameras.PointAndShoot.name{
-            let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-            if let buffer = buffer{
-                let image = CIImage(cvImageBuffer: buffer)
-                
-                let outputImage = ImageManipulation.applyFilterWith(name: UICamera.shared.getFilterInfo().name, image: image, percentage: UICamera.shared.getFilterInfo().effect)
-                
-                    videoFeed.Feed = outputImage.imageFlippedForRightToLeftLayoutDirection()
-                
-            }
-            
-        }
-            
-        
-        
-        
-        
-    }
-}
 
 

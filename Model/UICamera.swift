@@ -39,7 +39,7 @@ class UICamera{
         Threads.PictureThread.async {
             self.pictures.loadPictures()
         }
-        camera.applyLiveFilterToCameraFeed()
+        camera.applyLiveFilterToCameraFeed(delegate:photoDelegate)
     }
     
     //updates orientationg
