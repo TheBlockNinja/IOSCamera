@@ -25,7 +25,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         let imagePreview = photo.previewPixelBuffer
-        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name{
+        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name || UICamera.shared.getCurrentCamera() == Cameras.PointAndShoot.name {
             CurrentPreviewImage = videoFeed.Feed
             NotificationCenter.default.post(name: PhotoOutputDelegate.PreviewNotification, object: nil)
         }else{

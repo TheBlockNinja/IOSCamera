@@ -47,7 +47,7 @@ class BaseCameraViewController:UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         setFocused()
-
+        checkFilterFeedSize()
         if volumeView == nil{
             audioSession = AVAudioPlayer()
             try? AVAudioSession.sharedInstance().setActive(true)
@@ -131,10 +131,17 @@ class BaseCameraViewController:UIViewController{
             
             previewImage.image = UICamera.shared.photoDelegate.CurrentPreviewImage
             let _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(hidePicture), userInfo: nil, repeats: false)
+            checkFilterFeedSize()
         }
     }
 
-
+    func checkFilterFeedSize(){
+        if !cameraSkin.transform.isIdentity{
+            filterFeed.frame = previewCameraFeed.frame
+        }else{
+            //filterFeed.frame = cameraLensBtn.frame
+        }
+    }
     @objc private func hidePicture(){
         if let previewImage = previewImage{
             previewImage.image = nil

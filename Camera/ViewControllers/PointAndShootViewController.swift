@@ -69,7 +69,9 @@ class PointAndShootViewController: BaseCameraViewController{
     }
     @IBAction func didTapScreen(_ sender: Any) {
         takePicture()
+        checkFilterFeedSize()
     }
+
     @IBAction func changeFlash(_ sender: Any) {
         UICamera.shared.switchFlash()
         if UICamera.shared.getCurrentFlash() == "ON"{

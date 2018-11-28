@@ -23,7 +23,7 @@ struct Cameras{
                                           defaultPos:.back,
                                           exposure:.continuousAutoExposure,
                                           focusPoint:nil,
-                                          filterName:[ImageManipulation.SEPIA])
+                                          filterName:[ImageManipulation.GRAYSCALE])
     static let DSLR = Cameras(name: "DSLR",
                                      flash: [.off,.auto,.on],
                                      focus: [.autoFocus,.locked,.continuousAutoFocus],
@@ -36,7 +36,7 @@ struct Cameras{
                                               defaultPos:.back,
                                               exposure:.autoExpose,
                                               focusPoint:CGPoint(x:0.5,y:0.5),
-                                              filterName:[ImageManipulation.GRAYSCALE])
+                                              filterName:[ImageManipulation.SEPIA])
     
     
     
