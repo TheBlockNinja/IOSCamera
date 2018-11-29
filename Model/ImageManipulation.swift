@@ -12,8 +12,11 @@ import UIKit
 struct ImageManipulation{
     static let SEPIA = "CISepiaTone"
     static let GRAYSCALE = "CIPhotoEffectTonal"
+    static let COLORCUBE = "CIColorCubeWithColorSpace"
+    static let PHOTOEFFECTINSTANT = "CIPhotoEffectInstant"
     static let NON = ""
-    static let NOISE = ""
+
+    
     
     static func applyFilterWith(name:[String],image:UIImage,percentage:Double)->UIImage{
         var outputImage = image
@@ -50,6 +53,7 @@ struct ImageManipulation{
         if filter.name == SEPIA{
             filter.setValue(effect, forKey: kCIInputIntensityKey)
         }
+
         
         //https://stackoverflow.com/questions/27085225/getting-ciimage-from-uiimage-swift
         //altered

@@ -36,7 +36,7 @@ struct Cameras{
                                               defaultPos:.back,
                                               exposure:.autoExpose,
                                               focusPoint:CGPoint(x:0.5,y:0.5),
-                                              filterName:[ImageManipulation.SEPIA])
+                                              filterName:[ImageManipulation.PHOTOEFFECTINSTANT])
     
     
     
