@@ -11,6 +11,7 @@
 		9D0C422B21A9D83100251DC3 /* Old schoolv0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0C422A21A9D83100251DC3 /* Old schoolv0.png */; };
 		9D20A2C821B07895001BD93F /* Point and shoot flash off.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D20A2C721B07895001BD93F /* Point and shoot flash off.png */; };
 		9D20A2CA21B078B3001BD93F /* old school v2 1 flash off.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D20A2C921B078B3001BD93F /* old school v2 1 flash off.png */; };
+		9D20A2CC21B07E69001BD93F /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 9D20A2CB21B07E69001BD93F /* icons */; };
 		9D4B025621A49D2E009BF1CF /* Point and shootv0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4B025521A49D2D009BF1CF /* Point and shootv0.png */; };
 		9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D51AD66219A382E008F4B6E /* SettingsViewController.swift */; };
 		9DB5740921AFA2BB001242C7 /* old school v2 flash on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DB5740821AFA2BB001242C7 /* old school v2 flash on.png */; };
@@ -43,6 +44,7 @@
 		9D0C422A21A9D83100251DC3 /* Old schoolv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Old schoolv0.png"; sourceTree = "<group>"; };
 		9D20A2C721B07895001BD93F /* Point and shoot flash off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point and shoot flash off.png"; sourceTree = "<group>"; };
 		9D20A2C921B078B3001BD93F /* old school v2 1 flash off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old school v2 1 flash off.png"; sourceTree = "<group>"; };
+		9D20A2CB21B07E69001BD93F /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		9D4B025521A49D2D009BF1CF /* Point and shootv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point and shootv0.png"; sourceTree = "<group>"; };
 		9D51AD66219A382E008F4B6E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9DB5740821AFA2BB001242C7 /* old school v2 flash on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old school v2 flash on.png"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		E960389C219B59F300B64139 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9D20A2CB21B07E69001BD93F /* icons */,
 				9D20A2C921B078B3001BD93F /* old school v2 1 flash off.png */,
 				9D20A2C721B07895001BD93F /* Point and shoot flash off.png */,
 				9D02433B21B06B9800A9E4EC /* old school v2 flash off.png */,
@@ -234,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D20A2CC21B07E69001BD93F /* icons in Resources */,
 				9D02433C21B06B9A00A9E4EC /* old school v2 flash off.png in Resources */,
 				9D4B025621A49D2E009BF1CF /* Point and shootv0.png in Resources */,
 				9D20A2C821B07895001BD93F /* Point and shoot flash off.png in Resources */,
@@ -419,14 +423,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AEWFH68RD8;
+				DEVELOPMENT_TEAM = 885PZU27VJ;
 				INFOPLIST_FILE = Camera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = example.CoolCamera;
+				PRODUCT_BUNDLE_IDENTIFIER = CoolCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -438,14 +442,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AEWFH68RD8;
+				DEVELOPMENT_TEAM = 885PZU27VJ;
 				INFOPLIST_FILE = Camera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = example.CoolCamera;
+				PRODUCT_BUNDLE_IDENTIFIER = CoolCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
