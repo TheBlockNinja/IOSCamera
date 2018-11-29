@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		9D02433C21B06B9A00A9E4EC /* old school v2 flash off.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D02433B21B06B9800A9E4EC /* old school v2 flash off.png */; };
 		9D0C422B21A9D83100251DC3 /* Old schoolv0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0C422A21A9D83100251DC3 /* Old schoolv0.png */; };
-		9D4B025421A4931F009BF1CF /* DSLRv0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4B025321A4931E009BF1CF /* DSLRv0.png */; };
 		9D4B025621A49D2E009BF1CF /* Point and shootv0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4B025521A49D2D009BF1CF /* Point and shootv0.png */; };
 		9D51AD67219A382E008F4B6E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D51AD66219A382E008F4B6E /* SettingsViewController.swift */; };
-		9DB5740721AFA142001242C7 /* old school v1 flash on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DB5740621AFA140001242C7 /* old school v1 flash on.png */; };
 		9DB5740921AFA2BB001242C7 /* old school v2 flash on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DB5740821AFA2BB001242C7 /* old school v2 flash on.png */; };
 		9DF8716221ADD2E30048924F /* DSLRv1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DF8716121ADD2E30048924F /* DSLRv1.png */; };
 		E93EDA4D218B714600A1FE4D /* CameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EDA4C218B714600A1FE4D /* CameraData.swift */; };
@@ -41,10 +39,8 @@
 /* Begin PBXFileReference section */
 		9D02433B21B06B9800A9E4EC /* old school v2 flash off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old school v2 flash off.png"; sourceTree = "<group>"; };
 		9D0C422A21A9D83100251DC3 /* Old schoolv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Old schoolv0.png"; sourceTree = "<group>"; };
-		9D4B025321A4931E009BF1CF /* DSLRv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DSLRv0.png; sourceTree = "<group>"; };
 		9D4B025521A49D2D009BF1CF /* Point and shootv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Point and shootv0.png"; sourceTree = "<group>"; };
 		9D51AD66219A382E008F4B6E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		9DB5740621AFA140001242C7 /* old school v1 flash on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old school v1 flash on.png"; sourceTree = "<group>"; };
 		9DB5740821AFA2BB001242C7 /* old school v2 flash on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "old school v2 flash on.png"; sourceTree = "<group>"; };
 		9DF8716121ADD2E30048924F /* DSLRv1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DSLRv1.png; sourceTree = "<group>"; };
 		E93EDA4C218B714600A1FE4D /* CameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraData.swift; sourceTree = "<group>"; };
@@ -135,11 +131,9 @@
 			children = (
 				9D02433B21B06B9800A9E4EC /* old school v2 flash off.png */,
 				9DB5740821AFA2BB001242C7 /* old school v2 flash on.png */,
-				9DB5740621AFA140001242C7 /* old school v1 flash on.png */,
 				9D0C422A21A9D83100251DC3 /* Old schoolv0.png */,
 				9DF8716121ADD2E30048924F /* DSLRv1.png */,
 				9D4B025521A49D2D009BF1CF /* Point and shootv0.png */,
-				9D4B025321A4931E009BF1CF /* DSLRv0.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -236,13 +230,11 @@
 			files = (
 				9D02433C21B06B9A00A9E4EC /* old school v2 flash off.png in Resources */,
 				9D4B025621A49D2E009BF1CF /* Point and shootv0.png in Resources */,
-				9D4B025421A4931F009BF1CF /* DSLRv0.png in Resources */,
 				9DB5740921AFA2BB001242C7 /* old school v2 flash on.png in Resources */,
 				9DF8716221ADD2E30048924F /* DSLRv1.png in Resources */,
 				9D0C422B21A9D83100251DC3 /* Old schoolv0.png in Resources */,
 				E9FA88DD218A24BA007D5AD5 /* LaunchScreen.storyboard in Resources */,
 				E9FA88DA218A24BA007D5AD5 /* Assets.xcassets in Resources */,
-				9DB5740721AFA142001242C7 /* old school v1 flash on.png in Resources */,
 				E9FA88D8218A24B7007D5AD5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

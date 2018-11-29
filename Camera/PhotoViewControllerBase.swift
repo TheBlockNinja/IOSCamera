@@ -137,7 +137,9 @@ class BaseCameraViewController:UIViewController{
 
     func checkFilterFeedSize(){
         if !cameraSkin.transform.isIdentity{
-            filterFeed.frame = previewCameraFeed.frame
+            if let previewCameraFeed = previewCameraFeed,let filterFeed = filterFeed{
+                filterFeed.frame = previewCameraFeed.frame
+            }
         }else{
             //filterFeed.frame = cameraLensBtn.frame
         }
