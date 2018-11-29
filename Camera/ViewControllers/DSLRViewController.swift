@@ -17,6 +17,7 @@ class DSLRViewController: BaseCameraViewController {
     
     @IBOutlet weak var FlashBTN: UIButton!
     
+    @IBOutlet weak var filterPreviewView: UIImageView!
     @IBOutlet weak var focusModeBTN: UIButton!
     
     @IBOutlet weak var backBtn: UIButton!
@@ -33,19 +34,18 @@ class DSLRViewController: BaseCameraViewController {
         updateFocusMode()
         focusSlider.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -2)
         focusSlider.frame = CGRect(x: 0, y: UIScreen.main.bounds.height*0.1, width: 50, height: UIScreen.main.bounds.height*0.75)
-       // focusSlider.setValue(0.0, animated: true)
         flashNotification.layer.cornerRadius = flashNotification.frame.width/2
     }
     
     override func viewWillAppear(_ animated: Bool) {
         addConnections(previewCameraFeed: liveCameraFeed, previewImage: imagePreview, cameraSettings: .DSLR)
+        setFilterFeed(filterPreviewView)
         setCameraSkin(image: cameraSkinImageView)
-        
         let float = Float(UICamera.shared.getFocalDistanceF())
         focusSlider.setValue(float, animated: true)
- 
         updateFocusMode()
         updateFlash()
+       
         super.viewWillAppear(animated)
    
     }
@@ -57,6 +57,7 @@ class DSLRViewController: BaseCameraViewController {
         infoLabel.isHidden = true
         focusModeBTN.isHidden = true
         FlashBTN.isHidden = true
+        filterPreviewView.isHidden = true
     }
     
 
@@ -69,6 +70,7 @@ class DSLRViewController: BaseCameraViewController {
             infoLabel.isHidden = false
             focusModeBTN.isHidden = false
             FlashBTN.isHidden = false
+            filterPreviewView.isHidden = false
         }
     }
     @IBAction func willTakePicture(_ sender: Any) {

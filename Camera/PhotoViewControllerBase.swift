@@ -116,10 +116,14 @@ class BaseCameraViewController:UIViewController{
         if previewTimer != nil{
             previewTimer?.invalidate()
         }
-        previewTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(preview), userInfo: nil, repeats: true)
+        previewTimer = Timer.scheduledTimer(timeInterval: 1/60, target: self, selector: #selector(preview), userInfo: nil, repeats: true)
     }
     @objc func preview(){
+        if PhotoOutputDelegate.FilterVideoFeed == nil{
+            print("nil")
+        }
         filterFeed.image = PhotoOutputDelegate.FilterVideoFeed
+
     }
     @objc func takePicture(){
         UICamera.shared.takePicture()

@@ -25,7 +25,7 @@ class PhotoOutputDelegate:NSObject,AVCapturePhotoCaptureDelegate,AVCaptureVideoD
 
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if UICamera.shared.getCurrentCamera() == Cameras.OldSchool.name || UICamera.shared.getCurrentCamera() == Cameras.PointAndShoot.name{
+        if UICamera.shared.getCurrentCamera() != Cameras.non.name {
             let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
             if let buffer = buffer{
                 let image = CIImage(cvImageBuffer: buffer)

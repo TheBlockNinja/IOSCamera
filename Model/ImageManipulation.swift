@@ -35,8 +35,11 @@ struct ImageManipulation{
                     outputImage = UIImage(cgImage: newImage)
                 }
 
+            }else{
+                outputImage = UIImage(ciImage: image)
             }
         }
+        
         return outputImage
     }
     static let ctx = CIContext()

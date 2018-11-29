@@ -156,6 +156,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <gestureRecognizers/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7AP-gd-bTy">
+                                <rect key="frame" x="74" y="146" width="350" height="172"/>
+                            </imageView>
                             <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u3l-M3-5Bq">
                                 <rect key="frame" x="69" y="146" width="355" height="172"/>
                                 <gestureRecognizers/>
@@ -234,6 +237,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="7AP-gd-bTy" firstAttribute="bottom" secondItem="u3l-M3-5Bq" secondAttribute="bottom" id="006-aw-zIO"/>
                             <constraint firstItem="iVc-fX-T9Q" firstAttribute="centerX" secondItem="u3l-M3-5Bq" secondAttribute="centerX" id="1Mw-sV-iqu"/>
                             <constraint firstItem="8X5-xl-dW7" firstAttribute="top" secondItem="Q4Q-sP-OVT" secondAttribute="top" id="1qW-2j-QX7"/>
                             <constraint firstItem="Owz-vd-HUq" firstAttribute="top" secondItem="Q4Q-sP-OVT" secondAttribute="top" constant="50" id="2ci-x7-OIo"/>
@@ -252,14 +256,17 @@
                             <constraint firstItem="Q4Q-sP-OVT" firstAttribute="bottom" secondItem="93E-Ll-VSj" secondAttribute="bottom" constant="221" id="Vtu-kL-Fyj"/>
                             <constraint firstItem="Vjf-Fa-eZO" firstAttribute="leading" secondItem="Fut-I4-Gaa" secondAttribute="leading" id="WEp-q3-dHB"/>
                             <constraint firstItem="u3l-M3-5Bq" firstAttribute="leading" secondItem="Q4Q-sP-OVT" secondAttribute="leading" constant="69" id="XIC-XD-YyE"/>
+                            <constraint firstItem="7AP-gd-bTy" firstAttribute="leading" secondItem="iVc-fX-T9Q" secondAttribute="leading" id="Y2P-RG-0Vs"/>
                             <constraint firstItem="8X5-xl-dW7" firstAttribute="leading" secondItem="Owz-vd-HUq" secondAttribute="trailing" constant="61" id="YJY-7I-uXr"/>
                             <constraint firstItem="Q4Q-sP-OVT" firstAttribute="bottom" secondItem="u3l-M3-5Bq" secondAttribute="bottom" constant="25" id="YdB-wu-rmJ"/>
+                            <constraint firstItem="7AP-gd-bTy" firstAttribute="trailing" secondItem="u3l-M3-5Bq" secondAttribute="trailing" id="ctU-B9-DwL"/>
                             <constraint firstItem="Q4Q-sP-OVT" firstAttribute="trailing" secondItem="DXA-42-vmW" secondAttribute="trailing" constant="130" id="en0-FE-MmM"/>
                             <constraint firstItem="vcG-zc-pxY" firstAttribute="leading" secondItem="Owz-vd-HUq" secondAttribute="trailing" constant="30" id="fpW-J6-fPg"/>
                             <constraint firstItem="93E-Ll-VSj" firstAttribute="trailing" secondItem="Fut-I4-Gaa" secondAttribute="trailingMargin" constant="-186" id="hqU-Z0-POR"/>
                             <constraint firstItem="Vjf-Fa-eZO" firstAttribute="bottom" secondItem="oyq-8g-LyD" secondAttribute="bottom" id="iaf-pA-KR1"/>
                             <constraint firstItem="iVc-fX-T9Q" firstAttribute="leading" secondItem="Q4Q-sP-OVT" secondAttribute="leading" constant="74" id="inH-K2-quI"/>
                             <constraint firstItem="3X9-k1-TuL" firstAttribute="trailing" secondItem="93E-Ll-VSj" secondAttribute="trailing" constant="186" id="npC-XO-qZR"/>
+                            <constraint firstItem="7AP-gd-bTy" firstAttribute="top" secondItem="u3l-M3-5Bq" secondAttribute="top" id="orN-np-Hns"/>
                             <constraint firstItem="Q4Q-sP-OVT" firstAttribute="trailing" secondItem="vcG-zc-pxY" secondAttribute="trailing" constant="262" id="ore-BQ-e5N"/>
                             <constraint firstItem="Vjf-Fa-eZO" firstAttribute="bottom" secondItem="Q4Q-sP-OVT" secondAttribute="bottom" id="pOx-NS-Tym"/>
                             <constraint firstItem="Q4Q-sP-OVT" firstAttribute="bottom" secondItem="iVc-fX-T9Q" secondAttribute="bottom" constant="163" id="skc-A4-nwV"/>
@@ -279,6 +286,7 @@
                         <outlet property="backBtn" destination="3X9-k1-TuL" id="apO-Je-pxu"/>
                         <outlet property="cameraLensBtn" destination="Owz-vd-HUq" id="l6T-cl-y10"/>
                         <outlet property="cameraSkinImageView" destination="Vjf-Fa-eZO" id="AVa-PH-XHe"/>
+                        <outlet property="filterPreviewView" destination="7AP-gd-bTy" id="1zH-Hk-EbY"/>
                         <outlet property="flashNotification" destination="vcG-zc-pxY" id="XUi-I1-TnK"/>
                         <outlet property="focusModeBTN" destination="DXA-42-vmW" id="b1W-Xv-7Uf"/>
                         <outlet property="focusSlider" destination="gNc-Cu-hcb" id="KMR-aW-zoi"/>
