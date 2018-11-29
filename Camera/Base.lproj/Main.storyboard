@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="old school v1 flash on.png" translatesAutoresizingMaskIntoConstraints="NO" id="2If-3Y-xtj">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="old school v2 flash on.png" translatesAutoresizingMaskIntoConstraints="NO" id="2If-3Y-xtj">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -49,7 +49,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McW-fu-qMT">
                                 <rect key="frame" x="427" y="97" width="85" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="FLASH"/>
                                 <connections>
                                     <action selector="changeFlash:" destination="Ues-gV-4ke" eventType="touchUpInside" id="IdU-cP-s0V"/>
                                     <action selector="switchFlash:" destination="hOw-1V-wrE" eventType="touchUpInside" id="J7e-x4-XO8"/>
@@ -677,6 +676,6 @@
         <image name="DSLRv1.png" width="2436" height="1350"/>
         <image name="Old schoolv0.png" width="2436" height="1350"/>
         <image name="Point and shootv0.png" width="2436" height="1350"/>
-        <image name="old school v1 flash on.png" width="2436" height="1350"/>
+        <image name="old school v2 flash on.png" width="2436" height="1350"/>
     </resources>
 </document>
