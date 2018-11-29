@@ -78,9 +78,11 @@ class PointAndShootViewController: BaseCameraViewController{
             flashIndicator.backgroundColor = .yellow
             flashIndicator.addShadow(color: .yellow, radius: 15)
             flashIndicator.alpha = 0.6
+            cameraSkinImageView.image = UIImage(named: "Point and shootv0.png")
         }else{
             flashIndicator.backgroundColor = .clear
             flashIndicator.addShadow(color: .clear, radius: 0)
+            cameraSkinImageView.image = UIImage(named: "Point and shoot flash off.png")
         }
         
     }

@@ -93,7 +93,7 @@ class OldSchoolViewController: BaseCameraViewController {
             flashNotification.backgroundColor = .cyan
             flashNotification.addShadow(color: .cyan, radius: 10)
         }else{
-            cameraSkinImageView.image = UIImage(named: "old school v2 flash off.png")
+            cameraSkinImageView.image = UIImage(named: "old school v2 1 flash off.png")
             flashNotification.isHidden = true;
         }
     }
