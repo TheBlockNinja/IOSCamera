@@ -86,6 +86,8 @@ class OldSchoolViewController: BaseCameraViewController {
             flashNotification.isHidden = false;
             flashNotification.backgroundColor = .red
             flashNotification.addShadow(color: .red, radius: 10)
+           // cameraSkinImageView.image = UIImage(named: "")
+            
         }else if UICamera.shared.getCurrentFlash() == "AUTO"{
             flashNotification.isHidden = false;
             flashNotification.backgroundColor = .cyan

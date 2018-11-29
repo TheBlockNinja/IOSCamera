@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/ViewControllers/PointAndShootViewController.swift"
-            timestampString = "565066268.151479"
+            timestampString = "565209332.544662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -346,7 +346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Camera/ViewControllers/OldSchoolViewController.swift"
-            timestampString = "565066268.1518331"
+            timestampString = "565209332.5448951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -528,6 +528,22 @@
             startingLineNumber = "47"
             endingLineNumber = "47"
             landmarkName = "applyFilter(_:image:effect:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Camera/ViewControllers/OldSchoolViewController.swift"
+            timestampString = "565209332.545053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "switchFlash(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
