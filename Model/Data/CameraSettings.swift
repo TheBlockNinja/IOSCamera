@@ -2,7 +2,7 @@
 //  CameraSettings.swift
 //  Camera
 //
-//  Created by Seann Moser on 11/27/18.
+//  Created by Seann Moser & Theodore Holden on 11/27/18.
 //  Copyright © 2018 SOU. All rights reserved.
 //
 
